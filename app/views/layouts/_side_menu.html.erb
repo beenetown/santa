@@ -1,0 +1,49 @@
+<div class="side-bar">
+  <!-- <span id="logo"><%= link_to "Secret Santa", root_path %></span> -->
+  <div id="show-nav"><%= image_tag 'icons/menu_64.png' %></div>
+
+  <div id="nav">
+    <span>x</span>
+    <ul>
+      <li>Menu</li>
+      <li class="divider"></li>
+      <% if signed_in? %>
+        <li>Signed in as <%= current_user.view_name %></li>
+      <% end %>
+      <li>
+        <%= link_to "Home", root_path unless signed_in? %>
+        <%= link_to "Home", current_user if signed_in? %>
+      </li>
+      <li><%= link_to "Help", static_help_path %></li>
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Groups", groups_path %></li>
+      <li class="divider"></li>
+      <% if signed_in? %>
+        <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
+        <li class="divider"></li>
+      <% else %>
+        <li id="show-signin">Sign In</li>
+      <% end %>
+      <li id="signin">
+        <%= form_tag :sessions do %>
+          <%= text_field_tag :email, nil, placeholder: "email", autofocus: true, class: "no-click" %><br>
+          <%= password_field_tag :password, nil, placeholder: "password", class: "no-click" %><br>
+          <%= submit_tag "Sign In" %>
+        <% end %>
+        or, sign in with: <br>
+        <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+        <%= link_to(image_tag('social_buttons/google_32.png'), '/auth/google') %>
+        <%# link_to(image_tag('social_buttons/facebook_32.png'), '/auth/facebook') %>
+        <%# link_to(image_tag('social_buttons/twitter_32.png'), '/auth/twitter') %>
+      </li>
+
+      <% if signed_in? %>
+        <li id="social links">
+          <p>Link to:</p>
+          <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+          <%= link_to(image_tag('social_buttons/google_32.png'), '/auth/google') %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

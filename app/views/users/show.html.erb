@@ -1,0 +1,57 @@
+<div class="container">
+  <h1><%= @user.view_name %> 
+    <% if signed_in? && @user == current_user %>
+      <span>
+        <%= link_to "Edit", user_auths_path(@user) %>
+      </span>
+    <% end %>
+  </h1>
+  
+  <% if @groups.any? || @user == current_user %>
+    <h2>Groups</h2>
+  <% end %>
+  
+  <ul>
+    <% @groups.alphabetize.each do |group| %>
+      <li><%= link_to group.name, group %></li>
+    <% end %>
+    <% if signed_in? && @user == current_user %>
+      <li><%= button_to "Start New Group", new_group_path, method: :get, class: "large-btn bot-10 top-5" %></li>
+    <% end %>
+  </ul>
+
+  <% if @user == current_user && @user.invites.any? %>
+    <div>
+      <h2>Invites</h2>
+      <% @user.invites.each do |invite| %>
+        <div class="users-accept-form">
+          <%= form_tag accept_invite_path do %>
+            <%= label_tag invite.group.name %>
+            <%= hidden_field_tag :id, @user.id %>
+            <%= hidden_field_tag :group_id, invite.group.id %>
+            <div class="submit">
+              <%= submit_tag "Accept" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @user == current_user && @user.gifts.any? %>
+    <div>
+      <h2>Get a gift for:</h2>
+      <ul>
+        <% @gifts.each do |gift| %>
+          <li>
+            <%= link_to gift.giftee.view_name, gift.giftee %> by <%= gift.group.open_date.date_in_words %> 
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <h2>Gift Lists<span> - coming soon!</span></h2>
+  </div>
+</div>

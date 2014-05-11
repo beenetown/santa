@@ -1,0 +1,98 @@
+<div class="container">
+  <h1>
+    <%= @group.name %>
+    <% if current_user && current_user == @group.owner %>
+      <span>
+        <%= link_to 'Edit', edit_group_path(@group) %>
+      </span>  
+    <% end %>
+  </h1>
+
+  <% if current_user && current_user == @group.owner %>
+    <div>
+      <div class="groups-show-form">
+        <%= form_tag invite_user_path, method: :post do %>
+          <div class="fields">
+            <%= label_tag "Invite A New User:" %>
+            <%= text_field_tag :email, nil, placeholder: "new_user@example.com" %>
+            <%= hidden_field_tag :id, @group.id %>
+          </div>
+          <div class="submit">
+            <%= submit_tag "Invite User"%>
+          </div>
+        <% end %>
+      </div>
+      <% if @group.select_date.nil? %>
+        <div class="groups-show-form">
+          <%= form_tag select_date_path  do |f| %>
+            <div class="fields">
+              <%= label_tag "Set the selection date." %>
+              <%= date_field_tag "group[select_date]" %>
+              <%= hidden_field_tag :id, @group.id %>
+            </div>
+            <div class="submit">
+              <%= submit_tag "Set" %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <h2>
+          Selection Date
+          <span>
+            <%= link_to "edit", 'update_select_date_path' %>
+          </span>
+        </h2>
+        <p>
+          <%= @group.select_date.date_in_words %>
+        </p>
+      <% end %>
+
+      <% if @group.open_date.nil? %>
+        <div class="groups-show-form">
+          <%= form_tag open_date_path  do |f| %>
+            <div class="fields">
+              <%= label_tag "Set the open day." %>
+              <%= date_field_tag "group[open_date]" %>
+              <%= hidden_field_tag :id, @group.id %>
+            </div>
+            <div class="submit">
+              <%= submit_tag "Set" %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <h2>
+          Open Date
+          <span>
+            <%= link_to "edit", 'update_open_date_path' %>
+          </span>
+        </h2>
+        <p>
+          <%= @group.open_date.date_in_words %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless current_user == @group.owner %>
+    <% if @group.select_date %>
+      <h2>Selection Date</h2>
+      <p><%= @group.select_date.date_in_words %></p>
+    <% end %>
+    
+    <% if @group.open_date %>
+      <h2>Open Date</h2>
+      <p><%= @group.open_date.date_in_words %></p>
+    <% end %>
+  <% end %>
+  
+  <% if @users.any? %>
+    <h2>Group Members</h2>
+    
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to user.view_name, user %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

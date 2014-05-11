@@ -1,0 +1,10 @@
+<%= form_for(@group) do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Group Name" %>
+    <%= f.hidden_field :owner_id, value: @user.id if @user == current_user %>
+  </div>
+  <div class="submit">
+    <%= f.submit %>
+  </div>
+<% end %>

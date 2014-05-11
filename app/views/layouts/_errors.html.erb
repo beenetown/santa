@@ -1,0 +1,12 @@
+<% if flash[:notice] %>
+  <div id="notice">
+    <span id="close">x</span>
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div id="alert">
+    <span id="close">x</span>
+    <p><%= flash[:alert] %></p>
+  </div>
+<% end %>

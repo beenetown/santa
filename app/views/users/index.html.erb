@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Users</h1>
+
+  <% @users.each do |user| %>
+    <ul>
+      <li>
+        <h3><%= link_to user.view_name, user %></h3>
+      </li>
+    </ul>
+  <% end %>
+    
+</div>
