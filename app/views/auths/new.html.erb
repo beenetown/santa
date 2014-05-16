@@ -3,16 +3,16 @@
   <div class="fields">
     <%= form_for @auth do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name, placeholder: "name(optional)" %><br>
+      <%= f.text_field :name, placeholder: "name(optional)" %>
       <%= f.label :email %>
-      <%= f.text_field :email, placeholder: "email"%><br>
+      <%= f.text_field :email, placeholder: "email"%>
       <%= f.label :password %>
-      <%= f.password_field :password, placeholder: "password" %><br>
+      <%= f.password_field :password, placeholder: "password" %>
       <%= f.label :confirm_password %>
-      <%= f.password_field :password_confirmation, placeholder: "confirm password" %><br>
-    </div>  
+      <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
     <div class="submit">
       <%= f.submit "Create Account" %>
     </div>
+  </div>  
   <% end %>
 </div>

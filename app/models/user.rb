@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :groups
+  has_many :groups, through: :memberships
+  has_many :memberships, dependent: :destroy
+
   has_many :invites, dependent: :destroy
-  # has_secure_password validations: false
   
   has_many :gifts, foreign_key: "gifter_id", dependent: :destroy
   
@@ -13,22 +14,16 @@ class User < ActiveRecord::Base
   has_many :giftees, through: :gifts
   has_many :gifters, through: :gifts
 
-  # has_many :received_gifts,
-
   has_many :auths, dependent: :destroy   
 
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  # validates :email, presence: true, 
-  #                   format: { with: VALID_EMAIL_REGEX }, 
-  #                   uniqueness: { case_sensitive: false }
-
-  # validates :password, length: { minimum: 6 }                    
-
-  
   before_create :create_remember_token
-
-  # scope :alphabetize, -> { order('view_name') }
   
+  # scope :alphabetize, -> { order('name') }
+  
+  def self.shared_groups
+    self.all
+  end
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -41,14 +36,18 @@ class User < ActiveRecord::Base
     if self.guest? 
       "Guest" 
     else 
-      self.auths.each do |a|
-        return a.name unless a.name.blank?
+      if self.auths.any? { |a| a.provider == 'santa' }
+        return self.auths.find_by(provider: 'santa').name
+      else
+        self.auths.each do |a|
+          return a.name unless a.name.blank?
+        end
       end
-      "Anon"
+      return "Anon"
     end
   end
 
-  def User.temp_password
+  def self.temp_password
     SecureRandom.urlsafe_base64
   end
 

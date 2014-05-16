@@ -4,7 +4,7 @@ class Gift < ActiveRecord::Base
 
   belongs_to :group
 
-
+  validates :gifter_id, :giftee_id, :group_id, presence: true
   scope :alphabetize, -> { order('name') }
   
   def self.pull_from_hat
@@ -16,6 +16,7 @@ class Gift < ActiveRecord::Base
     groups = Group.where(select_date: date).to_a
 
     groups.each do |group|
+
       Gift.destroy_all(group_id: group.id)
       
       unused_ids = group.user_ids

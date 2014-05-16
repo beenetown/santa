@@ -1,11 +1,15 @@
 class UsersController < ApplicationController 
-
   before_action :set_user, only: [:show, :edit, :update, :destroy, :accept_invite]
-
+  before_action :signed_in_user, except: [:index, :show]
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if signed_in?
+      #fix this
+      @users = User.shared_groups
+    else
+      @users = User.all 
+    end
   end
 
   # GET /users/1
@@ -67,14 +71,7 @@ class UsersController < ApplicationController
   end
 
   def accept_invite
-    @group = Group.find(params[:group_id])
-    user_ids = @group.user_ids 
-    user_ids << @user.id
-    @group.update(user_ids: user_ids)
 
-    Invite.find_by(user_id: @user.id).destroy
-    
-    redirect_to @user
   end
 
     def add_user

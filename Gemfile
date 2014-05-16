@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'whenever', require: false
 
+gem 'faker', '~> 1.3.0'
+
 group :test do
   gem 'rspec-rails', '2.13.1'
   gem 'selenium-webdriver', '2.35.1'

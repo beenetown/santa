@@ -1,12 +1,39 @@
 <% if flash[:notice] %>
   <div id="notice">
-    <span id="close">x</span>
+    <span class="close">x</span>
     <p><%= flash[:notice] %></p>
   </div>
 <% end %>
+
 <% if flash[:alert] %>
   <div id="alert">
-    <span id="close">x</span>
+    <span class="close">x</span>
     <p><%= flash[:alert] %></p>
+  </div>
+<% end %>
+
+<% if @auth && @auth.errors.any? %>
+  <div id="alert">
+    <span class="close">x</span>
+    <h2><%= pluralize(@auth.errors.count, "error") %> prohibited this from being saved:</h2>
+
+    <ul>
+    <% @auth.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @session && @session.errors.any? %>
+  <div id="alert">
+    <span class="close">x</span>
+    <h2><%= pluralize(@session.errors.count, "error") %> prohibited this from being saved:</h2>
+
+    <ul>
+    <% @session.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>

@@ -24,7 +24,7 @@ border-radius: $radius $radius 0 0;
 }
 
 $white: #fff;
-$offWhite: #e7dfcf;
+$offWhite: #f5f3ea;
 $lightLightGray: #eee;
 $lightGray: #909090;
 $darkGray: #444;
@@ -333,7 +333,7 @@ html {
   }
 }
 // medium screens
-@media only screen and (min-device-width: 700px) and (max-width: 1029px) {
+@media only screen and (min-device-width: 700px) and (max-width: 899px) {
 
   header {
     width: 100%;
@@ -611,11 +611,11 @@ html {
   }
 }
 // large screens
-@media only screen and (min-width: 1030px) and (min-device-width: 700px) {
+@media only screen and (min-width: 900px) and (min-device-width: 700px) {
 
   header {
     width: 100%;
-    height: 110px;
+    height: 60px;
     background-color: $lightLightGreen;
     box-shadow: 0px 2px 3px 0px $darkGreen;
   }
@@ -647,9 +647,9 @@ html {
     // padding: 5px 11px 0px 10px;
     cursor: pointer;
     display: inline-block;
-    width: 64px;
+    width: 32px;
     height: 100%;
-    margin-top: 25px;
+    margin-top: 15px;
     img {
       width: 100%;
     }
@@ -657,8 +657,8 @@ html {
 
   #nav {
     position: absolute;
-    right: 8%;
-    top: 125px;
+    right: 7.5%;
+    top: 75px;
     display: none;
     color: $darkGray;
     box-shadow: 0 0px 4px $lightLightGray;
@@ -744,18 +744,21 @@ html {
       }
     }
     .submit {
-      // width: 55%;
+      width: 50%;
       // margin: 0 auto;
-      padding-bottom: 10px;
+      // padding-bottom: 10px;
       input {
         font-size: 0.7em;
         color: #fff;
-        padding: 5px 10px;
+        padding: 5px;
+        background: $lightGreen;
         background: -webkit-gradient(
           linear, left top, left bottom, 
           from($lightGreen),
           to($darkGreen));
-        border: none;
+        background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+            border: none;
+            border: none;
         @include rounded;
       }
     }
@@ -766,7 +769,6 @@ html {
 
   // content
   .container {
-    font-size: 2em;
     width: 60%;
     min-height: 100%;
     margin: auto;
@@ -774,12 +776,15 @@ html {
     // padding: 10px;
     background-color: white;
     @include rounded-top;
-    h1, h2, h3 {padding: 0 20% 0 20%;}
+    h1, h2, h3 {
+      padding: 0 20% 0 20%;
+    }
     h1 {
       @include rounded-top(0.2em);
       color: $lightLightGreen;
       background-color: $lightGreen;
-      font-size: 1.5em;
+      font-size: 3em;
+      padding-top: 8px;
       span {
         font-size: 0.4em;
         a {
@@ -787,9 +792,12 @@ html {
           color: $darkGray;
         }
       }
+      img {
+        @include rounded(0.2em);
+      }
     }
     h2 {
-      font-size: 1em;
+      font-size: 2.5em;
         span {
         font-size: 0.4em;
         a {
@@ -799,9 +807,9 @@ html {
       }  
     }
     h3 {
-      font-size: 0.5em;
+      font-size: 2em;
         span {
-        font-size: 0.4em;
+        font-size: 1em;
         a {
           text-decoration: none;
           color: $darkGray;
@@ -809,24 +817,59 @@ html {
       }
     }
     ul {
+      font-size: 2em;
       list-style: none;
       margin: 0 auto;
       width: 60%;
+      // margin-top: 10px;
+      img {
+        @include rounded(0.2em);
+      }
+      h2 {
+        display: inline-block;
+        padding: 0;
+      }
       a {
         text-decoration: none;
         color: $darkGray;
+      }
+      li {
+        font-size: 1em;
+        padding: 10px 10px 0px 10px;
+        border-bottom: 1px solid $lightGray;
+        &:nth-child(even) {
+          background-color: $lightLightGray;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        span {
+          float: right;
+          font-size: 0.5em;
+          margin-top: 1em;
+        }
       }
     }
     p {
       width: 60%;
       margin: 0 auto;
+      font-size: 2em;
+    }
+
+    .giftee-span {
+      font-size: 0.8em;
+      float: none;
     }
   }
 
  .groups-show-form {
     width: 60%;
     margin-left: 20%;
-    font-size: 1em;
+    font-size: 2em;
+    line-height: 1.5em;
     background-color: $white;
     // margin-top: 25px;
     .fields {
@@ -842,6 +885,7 @@ html {
         @include rounded(0.1em);
         background-color: $lightLightGray;
         border: none;
+        height: 100%
       }
     }
     .submit {
@@ -854,10 +898,12 @@ html {
         font-size: 0.7em;
         color: #fff;
         padding: 5px 10px;
-        background: -webkit-gradient(
-          linear, left top, left bottom, 
-          from($lightGreen),
-          to($darkGreen));
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
         border: none;
         @include rounded;
       }
@@ -881,10 +927,12 @@ html {
       input {
         font-size: 0.6em;
         color: #fff;
-        background: -webkit-gradient(
-          linear, left top, left bottom, 
-          from($lightGreen),
-          to($darkGreen));
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
         border: none;
         @include rounded;
       }
@@ -949,39 +997,6 @@ html {
     }
   }
 
-  // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 60%;
-    margin: 0 auto;
-    background-color: $lightLightGray;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 10%;
-    @include rounded;
-    p {
-      display: inline-block;
-      margin: 10px 5px 5px 5px;
-      width: inherit;
-    }
-    span {
-      margin-right: 5px;
-      font-size: 0.6em;
-      float: right;
-      color: $darkGray;
-      cursor: pointer;
-    }
-  }
-
-  #notice {
-    color: $darkGreen;
-    border: 1px solid $darkGreen;
-  }
-  #alert {
-    color: $darkRed;
-    border: 1px solid $darkRed;
-  }
-
   .form {
     width: 50%;
     margin: 0 auto;
@@ -996,8 +1011,8 @@ html {
       padding: 10px 0 10px 22%;
     }
     .fields {
-      width: 55%;
-      margin: 0 auto;
+      width: 60%;
+      margin-left: 20%;
       // padding: 10px;
       label {
         display: block;
@@ -1011,54 +1026,79 @@ html {
       }
     }
     .submit {
-      width: 55%;
-      margin: 0 auto;
       padding-bottom: 10px;
       input {
         font-size: 1em;
         color: #fff;
         padding: 5px 10px;
-        background: -webkit-gradient(
-          linear, left top, left bottom, 
-          from($lightGreen),
-          to($darkGreen));
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
         border: none;
-        // border-radius: 10px;
-        // border: 1px solid $darkGreen;
-        // -moz-box-shadow:
-        //   0px 1px 0px rgba(000,000,000,0.5),
-        //   inset 0px 0px 1px rgba(255,255,255,0.6);
-        // -webkit-box-shadow:
-        //   0px 1px 0px rgba(000,000,000,0.5),
-        //   inset 0px 0px 1px rgba(255,255,255,0.6);
-        // text-shadow:
-        //   0px -1px 0px rgba(000,000,000,1),
-        //   0px 1px 0px rgba(255,255,255,0.2);
         @include rounded;
       }
     }
   }
 
+  // misc.
+  #alert, #notice {
+    font-size: 2em;
+    width: 60%;
+    margin: 0 auto;
+    background-color: $lightLightGray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10%;
+    @include rounded;
+    p {
+      display: inline-block;
+      margin: 5px;
+      width: 90%;
+    }
+  }
+
+  #notice {
+    color: $darkGreen;
+    border: 1px solid $darkGreen;
+  }
+  #alert {
+    color: $darkRed;
+    border: 1px solid $darkRed;
+  }
+
+
   .large-btn {
     font-size: 1em;
     color: #fff;
     padding: 5px 10px;
+    background: $lightGreen;
     background: -webkit-gradient(
       linear, left top, left bottom, 
       from($lightGreen),
       to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
     border: none;
-    // border-radius: 10px;
-    // border: 1px solid $darkGreen;
-    // -moz-box-shadow:
-    //   0px 1px 0px rgba(000,000,000,0.5),
-    //   inset 0px 0px 1px rgba(255,255,255,0.6);
-    // -webkit-box-shadow:
-    //   0px 1px 0px rgba(000,000,000,0.5),
-    //   inset 0px 0px 1px rgba(255,255,255,0.6);
-    // text-shadow:
-    //   0px -1px 0px rgba(000,000,000,1),
-    //   0px 1px 0px rgba(255,255,255,0.2);
     @include rounded;
+  }
+
+  .close {
+    margin: 3px 5px 0 0;
+    font-size: 0.5em;
+    float: right;
+    color: $darkGray;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    @include rounded(50%);
+    padding-left: 3.5px;
+    line-height: 12px;
+    &:hover {
+      color: $white;
+      background-color: $lightRed;
+      border: 1px solid $darkRed;
+    }
   }
 }

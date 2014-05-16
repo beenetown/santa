@@ -1,11 +1,15 @@
 class GroupsController < ApplicationController
-
   before_action :set_group, only: [:show, :edit, :update, :destroy, :add_user, :invite_user, :select_date, :open_date]
+  before_action :signed_in_user, except: [:index, :show]
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    if signed_in?
+      @groups = current_user.groups
+    else
+      @groups = Group.all
+    end
   end
 
   # GET /groups/1
@@ -67,63 +71,11 @@ class GroupsController < ApplicationController
   end
 
   def add_user
-    user = User.find_by(email: params[:email])
-    user_id = user.id if user
-    user_ids = @group.user_ids
-    user_ids << user_id
-    respond_to do |format|
-      unless user_id.nil?
-        @group.update(user_ids: user_ids)
-        # @group.uuser_ids << user_id
-        format.html { redirect_to @group, notice: 'User was successfully added.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to @group, error: 'That user does not exist!' }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-    end
+
   end
 
   def invite_user
-    auth = Auth.find_by(email: params[:email])
-    @user = auth.user if auth
-     
-     if @user
-       UserMailer.invite_to_group(params[:email], @group, @user).deliver #if Rails.env.production?
-       @invite = Invite.create(user_id: @user.id, group_id: @group.id)
-       redirect_to @group, notice: "Invitation was sent to #{params[:email]}"
-     else
-        # create a temporary account
-        user = User.create(guest: true)
-        password = User.temp_password
-        auth = Auth.create(provider: "santa",
-                          user_id: user.id,
-                          email: params[:email],
-                          password: password,
-                          password_confirmation: password)
-        invite = Invite.create(user_id: user.id, group_id: @group.id)
-
-        UserMailer.invite_new_user(params[:email], @group, user, password).deliver
-        redirect_to @group, notice: "#{params[:email]} does not have a Secret Santa account. An invitation to join was sent."
-     end
-  end
-
-  def select_date
-    @group.select_date = params[:group][:select_date]
-    if @group.save
-      redirect_to @group
-    else
-      redirect_to @group
-    end
-  end
-
-  def open_date
-    @group.open_date = params[:group][:open_date]
-    if @group.save
-      redirect_to @group
-    else
-      redirect_to @group
-    end
+    
   end
 
   private

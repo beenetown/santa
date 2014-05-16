@@ -1,16 +1,26 @@
-$('html').click (e) ->
-  if $('#nav').is(":visible") && !$('#signin').is(":visible")
+$('html').click ->
+  if $('#nav').is(":visible") #&& !$('#signin').is(":visible")
     $('#nav').hide()
 
+$(document).on "ready page:load", ->
+  $("#signin").click (e) ->
+    e.stopPropagation()
 
-$(document).on "ready page:load", (e) ->
-  $('#show-signin').click ->
-    $('#signin').show()
-    # event.stopPropagation()
+  # This breaks signout link
+  # $("#nav").click (e) ->
+  #   e.stopPropagation()
+
+  $(document).keyup (e) ->
+    if e.keyCode == 27 && $('#nav').is(":visible")
+      $('#nav').hide()  
+
+  $('#show-signin').click (e) ->
+    $('#signin').toggle()
+    e.stopPropagation()
   
-  $('#show-nav').click ->
+  $('#show-nav').click (e) ->
     $('#nav').toggle()
-    event.stopPropagation()
+    e.stopPropagation()
 
-  $('#close').click ->
+  $('.close').click ->
     $(this).parent().hide()

@@ -1,6 +1,12 @@
 module ApplicationHelper
+  def placeholder_image(options = {})
+    options[:size] ||= 50
+    options[:category] ||= "abstract"
+    "http://lorempixel.com/#{options[:size]}/#{options[:size]}/#{options[:category]}/#{rand(1..10)}"
+  end
+
   def date_in_words
-    self.strftime("%B %d, %Y")
+    self.strftime("%b %d, %Y")
   end
 
   def sign_in(user)
@@ -12,6 +18,13 @@ module ApplicationHelper
 
   def signed_in?
     !current_user.nil?
+  end
+
+  def signed_in_user
+    unless signed_in?
+      flash[:alert] = "Please sign in!"
+      redirect_to root_url 
+    end
   end
 
   def sign_out

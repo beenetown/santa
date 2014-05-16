@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Users</h1>
 
+  <ul>
   <% @users.each do |user| %>
-    <ul>
       <li>
-        <h3><%= link_to user.view_name, user %></h3>
+        <%= image_tag(placeholder_image size: 50, category: "people") %>
+        <h2><%= link_to user.view_name, user %></h2>
       </li>
-    </ul>
   <% end %>
-    
+  </ul>
 </div>

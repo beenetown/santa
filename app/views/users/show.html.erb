@@ -1,5 +1,7 @@
 <div class="container">
-  <h1><%= @user.view_name %> 
+  <h1>
+    <%# image_tag placeholder_image size: 35 %>
+    <%= @user.view_name %> 
     <% if signed_in? && @user == current_user %>
       <span>
         <%= link_to "Edit", user_auths_path(@user) %>
@@ -13,12 +15,23 @@
   
   <ul>
     <% @groups.alphabetize.each do |group| %>
-      <li><%= link_to group.name, group %></li>
-    <% end %>
-    <% if signed_in? && @user == current_user %>
-      <li><%= button_to "Start New Group", new_group_path, method: :get, class: "large-btn bot-10 top-5" %></li>
+      <li>
+        <%= image_tag placeholder_image size: 30 %>
+        <%= link_to group.name, group %>
+          <% if current_user && @user == current_user %>
+            <span>
+              <%= link_to "unjoin", group_membership_path(group.id, @user.id), method: :delete, confirm: "Are you sure you want to unjoin this group?" %>
+            </span>
+          <% end %>
+      </li>
     <% end %>
   </ul>
+    
+    <% if signed_in? && @user == current_user %>
+      <div class="users-accept-form">
+        <%= button_to "Start New Group", new_group_path, method: :get, class: "large-btn bot-10 top-5" %>
+      </div>
+    <% end %>
 
   <% if @user == current_user && @user.invites.any? %>
     <div>
@@ -44,7 +57,11 @@
       <ul>
         <% @gifts.each do |gift| %>
           <li>
-            <%= link_to gift.giftee.view_name, gift.giftee %> by <%= gift.group.open_date.date_in_words %> 
+            <%= image_tag placeholder_image size: 30 %>
+            <%= link_to gift.giftee.view_name, gift.giftee %> 
+            <span class="giftee-span">
+              by <%= gift.group.open_date.date_in_words %>
+            </span>
           </li>
         <% end %>
       </ul>

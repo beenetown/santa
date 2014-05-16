@@ -1,0 +1,9 @@
+<%= form_tag opening_day_path do |f| %>
+  <div class="fields">
+    <%= date_field_tag "open_date[open_date]" %>
+    <%= hidden_field_tag :id, @group.id %>
+  </div>
+  <div class="submit">
+    <%= submit_tag "Set" %>
+  </div>
+<% end %>
