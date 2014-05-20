@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
 
     #reassign gift
     # if Time.now.to_date > @group.select_date
-      reassign_gift(@group, @user)
+      reassign_gift(@group, @user) if @group.select_date
     # end
 
     group_user = Membership.find_by(user_id: @user.id, group_id: @group.id)

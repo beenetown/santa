@@ -11,14 +11,11 @@ Santa::Application.routes.draw do
   post "add_user",    to: "group_users#create"
 
 
-  get "static/home"
-  get "static/help"
-
   resources :sessions, only: [:new, :create]
   get "signin",     to: "sessions#new"
   delete "signout", to: "sessions#destroy"
 
-  resources :auths, only: [:new, :create, :edit, :update, :destroy]
+  resources :auths, only: [:new, :create, :update, :destroy]
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/google', to: redirect('/auth/google_oauth2')
   get '/auth/failure', to: redirect('/')
@@ -32,12 +29,13 @@ Santa::Application.routes.draw do
   # get "edit_open_date", to: "open_dates#edit"
 
   resources :users do 
-    resources :auths
+    resources :auths, only: [:edit, :update, :index]
   end
 
   get "signup", to: "auths#new"
 
 
   root "static#home"
+  get "help", to: "static#help"
 
 end

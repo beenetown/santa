@@ -43,6 +43,7 @@ Spork.prefork do
     #     --seed 1234
     config.order = "random"
     config.include Capybara::DSL
+    I18n.enforce_available_locales = false
   end
 end
 

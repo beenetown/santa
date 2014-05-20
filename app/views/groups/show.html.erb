@@ -71,7 +71,7 @@
           <%= image_tag placeholder_image size: 25 %>
           <%= link_to user.view_name, user %>
           <span>
-            <%= link_to "remove", group_membership_path(@group.id, user.id), method: :delete, confirm: "Are you sure you want to remove #{user.view_name} from this group?" %>
+            <%= link_to "remove", group_membership_path(@group.id, user.id), method: :delete, data: { confirm: "Are you sure you want to remove #{user.view_name} from this group?" } %>
           </span>
         </li>
       <% end %>

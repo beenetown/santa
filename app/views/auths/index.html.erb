@@ -2,8 +2,8 @@
   <h1><%= @user.view_name %></h1>
   <h2>Which would you like to edit?</h2>
     <p>
-  <% @auths.each do |auth| %>
-      <%= link_to(image_tag("social_buttons/#{auth.provider}_32.png"), edit_user_auth_path(@user.id, auth.id), method: :get) %>
-  <% end %>
+      <% @auths.each do |auth| %>
+        <%= link_to(image_tag("social_buttons/#{auth.provider}_32.png"), edit_user_auth_path(@user.id, auth.id), method: :get) %>
+      <% end %>
     </p>
 </div>

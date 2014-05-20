@@ -31,4 +31,35 @@ describe Gift do
     subject { gift_without_group }
     it { should_not be_valid }
   end
+
+  describe "pull_from_hat" do
+  @group_1 = Group.create(name: "Test Group 1")
+  
+  @user_1 = User.create()
+  @user_2 = User.create()
+  @user_3 = User.create()
+  @user_4 = User.create()
+  
+
+    # let!(:group_1) { FactoryGirl.create(:group, name: "Test Group_1") }
+    # let!(:group_2) { FactoryGirl.create(:group, name: "Test Group_2") }
+    # let!(:group_3) { FactoryGirl.create(:group, name: "Test Group_3") }
+
+    # let!(:user_1) { FactoryGirl.create(:user) }
+    # let!(:user_2) { FactoryGirl.create(:user) }
+    # let!(:user_3) { FactoryGirl.create(:user) }
+    # let!(:user_4) { FactoryGirl.create(:user) }
+    # let!(:user_5) { FactoryGirl.create(:user) }
+    # let!(:user_6) { FactoryGirl.create(:user) }
+    # let!(:user_7) { FactoryGirl.create(:user) }
+    # let!(:user_8) { FactoryGirl.create(:user) }
+    # let!(:user_9) { FactoryGirl.create(:user) }
+    # let!(:user_10) { FactoryGirl.create(:user) }
+    # let!(:user_11) { FactoryGirl.create(:user) }
+    # let!(:user_12) { FactoryGirl.create(:user) }
+
+    @group_1.users = [@user_1, @user_2, @user_3, @user_4]
+    # group_2.users = [user_5, user_6, user_7, user_8]
+    # group_3.users = [user_9, user_10, user_11, user_12]
+  end
 end

@@ -37,3 +37,16 @@
     </ul>
   </div>
 <% end %>
+
+<% if @group && @group.errors.any? %>
+  <div id="alert">
+    <span class="close">x</span>
+    <h2><%= pluralize(@group.errors.count, "error") %> prohibited this from being saved:</h2>
+
+    <ul>
+    <% @group.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

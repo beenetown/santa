@@ -7,12 +7,16 @@ class Gift < ActiveRecord::Base
   validates :gifter_id, :giftee_id, :group_id, presence: true
   scope :alphabetize, -> { order('name') }
   
-  def self.pull_from_hat
-    time1 = Time.now()
-    puts "======================================================================"
-    puts "Real implementation is not going!!!!!!"  
-    # date = Time.now.to_date # This is the real implementation
-    date = Time.new(2014, 11, 30).to_date # This should be deleted
+  def self.pull_from_hat(options={})
+    time1 = Time.now() #for timer
+    date = options[:date] 
+    no_output = options[:no_output]
+
+    unless no_output
+      puts "======================================================================"
+    end
+    
+    date ||= Time.now.to_date 
     groups = Group.where(select_date: date).to_a
 
     groups.each do |group|
@@ -35,9 +39,11 @@ class Gift < ActiveRecord::Base
         end
       end
     end
-      time2 = Time.now()
-      puts "pulled_from_hat completed #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')} in #{time2 - time1} seconds"
-      puts "======================================================================"
+      time2 = Time.now() #for timer
+      unless no_output
+        puts "pulled_from_hat completed #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')} in #{time2 - time1} seconds"
+        puts "======================================================================"
+      end
   end
 
   def self.unpicked_giftee_id(unused_ids, gifter_id)

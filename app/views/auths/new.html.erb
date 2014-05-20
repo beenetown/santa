@@ -1,18 +1,4 @@
 <div class="form">
   <h1>Create Your Account:</h1>
-  <div class="fields">
-    <%= form_for @auth do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name, placeholder: "name(optional)" %>
-      <%= f.label :email %>
-      <%= f.text_field :email, placeholder: "email"%>
-      <%= f.label :password %>
-      <%= f.password_field :password, placeholder: "password" %>
-      <%= f.label :confirm_password %>
-      <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
-    <div class="submit">
-      <%= f.submit "Create Account" %>
-    </div>
-  </div>  
-  <% end %>
+  <%= render 'form' %>
 </div>

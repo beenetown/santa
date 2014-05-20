@@ -16,11 +16,11 @@
   <ul>
     <% @groups.alphabetize.each do |group| %>
       <li>
-        <%= image_tag placeholder_image size: 30 %>
+        <%= image_tag placeholder_image size: 20 %>
         <%= link_to group.name, group %>
           <% if current_user && @user == current_user %>
             <span>
-              <%= link_to "unjoin", group_membership_path(group.id, @user.id), method: :delete, confirm: "Are you sure you want to unjoin this group?" %>
+              <%= link_to "unjoin", group_membership_path(group.id, @user.id), method: :delete, data: { confirm: "Are you sure you want to unjoin this group?" } %>
             </span>
           <% end %>
       </li>
@@ -35,11 +35,11 @@
 
   <% if @user == current_user && @user.invites.any? %>
     <div>
-      <h2>Invites</h2>
+      <h2>Group Invitations</h2>
       <% @user.invites.each do |invite| %>
-        <div class="users-accept-form">
+        <div class="invite-accept-form">
           <%= form_tag accept_invite_path do %>
-            <%= label_tag invite.group.name %>
+          <label><%= invite.group.name %><label>
             <%= hidden_field_tag :id, @user.id %>
             <%= hidden_field_tag :group_id, invite.group.id %>
             <div class="submit">
@@ -57,7 +57,7 @@
       <ul>
         <% @gifts.each do |gift| %>
           <li>
-            <%= image_tag placeholder_image size: 30 %>
+            <%= image_tag placeholder_image size: 20 %>
             <%= link_to gift.giftee.view_name, gift.giftee %> 
             <span class="giftee-span">
               by <%= gift.group.open_date.date_in_words %>

@@ -1,0 +1,15 @@
+<div class="fields">
+  <%= form_for [@user, @auth] do |f| %>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :Confirm_password %>
+    <%= f.password_field :password_confirmation %>
+    <div class="submit">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
