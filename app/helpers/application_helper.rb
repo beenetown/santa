@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def date_in_words
-    self.strftime("%b %d, %Y")
+    self ? self.strftime("%b %d, %Y") : false
   end
 
   def sign_in(user)

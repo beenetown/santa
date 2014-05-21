@@ -90,7 +90,6 @@ html {
     cursor: pointer;
     display: inline;
     width: 20%;
-    height: 100%;
     margin: 20px 20px 0 0;
     img {
       width: 100%;
@@ -335,9 +334,10 @@ html {
 // medium screens
 @media only screen and (min-device-width: 700px) and (max-width: 899px) {
 
+
   header {
     width: 100%;
-    height: 110px;
+    height: 60px;
     background-color: $lightLightGreen;
     box-shadow: 0px 2px 3px 0px $darkGreen;
   }
@@ -347,18 +347,20 @@ html {
     height: 100%;
     margin: 0 auto;
     #logo {
-
+      // background-image: url(image-path('logos/santa_logo_144.png'));
+      // background-repeat: no-repeat;
       display: inline-block;
       font-size: 4em;
       text-decoration: none;
       color: $darkGray;
-      width: 64px;
-      line-height: 0.6em;
+      // width: 10%;
+      // height: 100%;
+      width: 144px;
+      height: 100px;
+      line-height: 0.8em;
     }
     img {margin-top: 5px;}
   }
-
-  #show-signin {cursor: pointer;}
 
   #show-nav {
     float: right;
@@ -367,9 +369,8 @@ html {
     // padding: 5px 11px 0px 10px;
     cursor: pointer;
     display: inline-block;
-    width: 64px;
-    height: 100%;
-    margin-top: 40px;
+    width: 32px;
+    margin-top: 15px;
     img {
       width: 100%;
     }
@@ -377,12 +378,12 @@ html {
 
   #nav {
     position: absolute;
-    right: 8%;
-    top: 125px;
+    right: 7.5%;
+    top: 75px;
     display: none;
     color: $darkGray;
     box-shadow: 0 0px 4px $lightLightGray;
-    width: 30%;
+    width: 25%;
     background-color: $white;
     span {
       float:right;
@@ -441,31 +442,70 @@ html {
     margin-left: -11px;
   }
 
+  #show-signin {cursor: pointer;}
   #signin {
     display:none;
+    // width: 50%;
+    // margin: 0 auto;
+    font-size: 1em;
+    background-color: $white;
+    // margin-top: 25px;
+
+    .fields {
+      // width: 55%;
+      // margin: 0 auto;
+      // padding: 10px;
+      input {
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 2px 0 2px 3px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+      }
+    }
+    .submit {
+      width: 50%;
+      // margin: 0 auto;
+      // padding-bottom: 10px;
+      input {
+        font-size: 0.7em;
+        color: #fff;
+        padding: 5px;
+        background: $lightGreen;
+        background: -webkit-gradient(
+          linear, left top, left bottom, 
+          from($lightGreen),
+          to($darkGreen));
+        background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+            border: none;
+            border: none;
+        @include rounded;
+      }
+    }
     a {
       margin: 0 0 20px 10px;
-    }
-    form {
-      font-size: 0.8em;
-      input{
-        margin-top: 5px;
-        width: 100%;
-      } 
     }
   }
 
   // content
   .container {
-    font-size: 2em;
     width: 80%;
     min-height: 100%;
     margin: auto;
     margin-top: 20px;
-    padding: 10px;
+    // padding: 10px;
     background-color: white;
+    @include rounded-top;
+    h1, h2, h3 {
+      padding: 0 20% 0 20%;
+    }
     h1 {
-      font-size: 2em;
+      @include rounded-top(0.2em);
+      color: $lightLightGreen;
+      background-color: $lightGreen;
+      font-size: 3em;
+      padding-top: 8px;
       span {
         font-size: 0.4em;
         a {
@@ -473,9 +513,12 @@ html {
           color: $darkGray;
         }
       }
+      img {
+        @include rounded(0.2em);
+      }
     }
     h2 {
-      font-size: 1.5em;
+      font-size: 2.5em;
         span {
         font-size: 0.4em;
         a {
@@ -485,9 +528,9 @@ html {
       }  
     }
     h3 {
-      font-size: 1em;
+      font-size: 2em;
         span {
-        font-size: 0.4em;
+        font-size: 1em;
         a {
           text-decoration: none;
           color: $darkGray;
@@ -495,11 +538,121 @@ html {
       }
     }
     ul {
+      font-size: 2em;
       list-style: none;
-      margin: 0;
+      margin: 0 auto;
+      width: 60%;
+      // margin-top: 10px;
+      img {
+        @include rounded(0.2em);
+      }
+      h2 {
+        display: inline-block;
+        padding: 0;
+      }
       a {
         text-decoration: none;
         color: $darkGray;
+      }
+      li {
+        font-size: 1em;
+        padding: 10px;
+        border-bottom: 1px solid $lightGray;
+        &:last-child {
+          border-bottom: none;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        span {
+          float: right;
+          font-size: 0.5em;
+          margin-top: 1em;
+        }
+      }
+    }
+    p {
+      width: 60%;
+      margin: 0 auto;
+      font-size: 2em;
+    }
+
+    .giftee-span {
+      font-size: 0.8em;
+      float: none;
+    }
+  }
+
+ .groups-show-form {
+    width: 60%;
+    margin-left: 20%;
+    font-size: 2em;
+    line-height: 1.5em;
+    background-color: $white;
+    // margin-top: 25px;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%;
+      }
+      input {
+        float: left;
+        width: 78%;
+        margin-bottom: 5px;
+        padding: 2px 0 2px 3px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+        height: 100%
+      }
+    }
+    .submit {
+      display: inline-block;
+      width: 20%;
+      float: right;
+      // margin: 0 auto;
+      padding-bottom: 10px;
+      input {
+        font-size: 0.7em;
+        color: #fff;
+        padding: 5px 10px;
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+        border: none;
+        @include rounded;
+      }
+    }
+    a {
+      margin: 0 0 20px 10px;
+    }
+  }
+
+  .users-accept-form {
+    margin-left: 20%;
+    font-size: 1em;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+    .submit {
+      display: inline-block;
+      input {
+        font-size: 0.6em;
+        color: #fff;
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+        border: none;
+        @include rounded;
       }
     }
   }
@@ -562,53 +715,137 @@ html {
     }
   }
 
-  // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 60%;
+  .form {
+    width: 80%;
     margin: 0 auto;
-    background-color: lighten($lightGray, 25%);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    p {
-      display: inline-block;
-      margin: 10px 5px 5px 5px;
+    font-size: 2em;
+    background-color: $white;
+    margin-top: 25px;
+    @include rounded;
+    h1 {
+      color: $lightLightGray;
+      background-color: $lightGreen;
+      @include rounded-top;
+      padding: 10px 0 10px 22%;
     }
-    span {
-      margin-right: 5px;
-      padding: 0;
-      font-size: 0.5em;
-      float: right;
-      color: lighten($lightGray, 50%);
-      cursor: pointer;
+    .fields {
+      width: 60%;
+      margin-left: 20%;
+      // padding: 10px;
+      label {
+        display: block;
+      }
+      input {
+        margin: 0 0 10px 0;
+        padding: 5px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+      }
+    }
+    .submit {
+      padding-bottom: 10px;
+      input {
+        font-size: 1em;
+        color: #fff;
+        padding: 5px 10px;
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+        border: none;
+        @include rounded;
+      }
     }
   }
 
-  #notice {color: $darkGreen;}
-  #alert {color: $darkRed;}
+  // misc.
+  #alert, #notice {
+    font-size: 2em;
+    width: 80%;
+    margin: 0 auto;
+    background-color: $lightLightGray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    @include rounded;
+    p {
+      display: inline-block;
+      margin: 5px;
+      width: 90%;
+    }
+  }
+
+  #notice {
+    color: $darkGreen;
+    border: 1px solid $darkGreen;
+  }
+  #alert {
+    color: $darkRed;
+    border: 1px solid $darkRed;
+  }
+
 
   .large-btn {
     font-size: 1em;
     color: #fff;
     padding: 5px 10px;
+    background: $lightGreen;
     background: -webkit-gradient(
       linear, left top, left bottom, 
       from($lightGreen),
       to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
     border: none;
-    // border-radius: 10px;
-    // border: 1px solid $darkGreen;
-    // -moz-box-shadow:
-    //   0px 1px 0px rgba(000,000,000,0.5),
-    //   inset 0px 0px 1px rgba(255,255,255,0.6);
-    // -webkit-box-shadow:
-    //   0px 1px 0px rgba(000,000,000,0.5),
-    //   inset 0px 0px 1px rgba(255,255,255,0.6);
-    // text-shadow:
-    //   0px -1px 0px rgba(000,000,000,1),
-    //   0px 1px 0px rgba(255,255,255,0.2);
     @include rounded;
   }
+
+  .invite-accept-form {
+    margin-left: 20%;
+    font-size: 1.8em;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+    .submit {
+      display: inline-block;
+      input {
+        font-size: 0.6em;
+        color: #fff;
+        background: $lightGreen;
+    background: -webkit-gradient(
+      linear, left top, left bottom, 
+      from($lightGreen),
+      to($darkGreen));
+    background: -moz-linear-gradient( to bottom, $lightGreen, $darkGreen);
+        border: none;
+        @include rounded;
+      }
+    }
+  }
+  
+  .close {
+    margin: 3px 5px 0 0;
+    font-size: 0.5em;
+    float: right;
+    color: $darkGray;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    @include rounded(50%);
+    padding-left: 3.5px;
+    line-height: 12px;
+    &:hover {
+      color: $white;
+      background-color: $lightRed;
+      border: 1px solid $darkRed;
+    }
+  }
+ 
 }
 // large screens
 @media only screen and (min-width: 900px) and (min-device-width: 700px) {
@@ -648,7 +885,6 @@ html {
     cursor: pointer;
     display: inline-block;
     width: 32px;
-    height: 100%;
     margin-top: 15px;
     img {
       width: 100%;

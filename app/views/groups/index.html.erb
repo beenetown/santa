@@ -3,7 +3,7 @@
   <ul>
     <% @groups.each do |group| %>
       <li>
-        <%= image_tag placeholder_image size: 30, category: "city" %>
+        <%= image_tag placeholder_image size: 30 %>
         <%= link_to group.name, group %>
       </li>
     <% end %>

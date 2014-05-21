@@ -20,13 +20,14 @@ Santa::Application.routes.draw do
   get '/auth/google', to: redirect('/auth/google_oauth2')
   get '/auth/failure', to: redirect('/')
 
-  resources :selection_dates
+  resources :selection_dates, only: [:new, :create, :update, :edit]
   post "selection_day", to: "selection_dates#create"
   # get 'edit_selection_date', to: "selection_dates#edit"
   
-  resources :open_dates
+  resources :open_dates, only: [:new, :create, :update, :edit]
   post "opening_day",   to: "open_dates#create" 
-  # get "edit_open_date", to: "open_dates#edit"
+
+  resources :spending_limits
 
   resources :users do 
     resources :auths, only: [:edit, :update, :index]

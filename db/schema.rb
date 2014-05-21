@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516135034) do
+ActiveRecord::Schema.define(version: 20140521141959) do
 
   create_table "auths", force: true do |t|
     t.string   "provider"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140516135034) do
     t.integer  "owner_id"
     t.date     "select_date"
     t.date     "open_date"
+    t.decimal  "spending_limit", precision: 8, scale: 2
   end
 
   create_table "invites", force: true do |t|

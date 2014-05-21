@@ -60,7 +60,11 @@
             <%= image_tag placeholder_image size: 20 %>
             <%= link_to gift.giftee.view_name, gift.giftee %> 
             <span class="giftee-span">
-              by <%= gift.group.open_date.date_in_words %>
+              <% if gift.group.open_date %>
+                <%= "by #{gift.group.open_date.date_in_words}" %>
+              <% else %>
+                date to be determined
+              <% end %>
             </span>
           </li>
         <% end %>

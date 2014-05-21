@@ -58,7 +58,7 @@ johns_group = Group.create({ name: "John Group",
                              open_date: open_date
                               })
 
-(1..cummings.length).each { |u| GroupsUser.create(user_id: u, group_id: cummings_group.id) }
-(cummings.length+1..users.length).each { |u| GroupsUser.create(user_id: u, group_id: johns_group.id) }
-GroupsUser.create(user_id: 1, group_id: johns_group.id)
+(1..cummings.length).each { |u| Membership.create(user_id: u, group_id: cummings_group.id) }
+(cummings.length+1..users.length).each { |u| Membership.create(user_id: u, group_id: johns_group.id) }
+Membership.create(user_id: 1, group_id: johns_group.id)
 Gift.pull_from_hat
