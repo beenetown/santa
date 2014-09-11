@@ -1,8 +1,8 @@
 class OpenDatesController < ApplicationController
   def create
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     respond_to do |format|
-      if @group.update(open_date: params[:open_date][:open_date])
+      if @group.update(open_date: params[:open_date])
         format.html { redirect_to @group, notice: 'Open Date now set.' }
         format.json { head :no_content }
       else
@@ -14,12 +14,16 @@ class OpenDatesController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def update
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     respond_to do |format|
-      if @group.update(open_date: params[:open_date][:open_date])
+      if @group.update(open_date: params[:open_date])
         format.html { redirect_to @group, notice: 'Open Date was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,0 +1,9 @@
+$("#open-date-set").addClass('sidebar-form').html("<label>Set Open Day</label><%= escape_javascript render partial: 'open_dates/form', locals: { http_req: :put} %>");
+
+$('html').click(function(e){
+  $('#open-date-set').removeClass('sidebar-form').html("<%= escape_javascript render 'open_dates/show' %>");    
+});
+
+$('#open_date').click(function(e) {
+  e.stopPropagation();
+});

@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe "group pages" do
   let(:user) { FactoryGirl.create(:user) }
-  let(:auth) { FactoryGirl.create(:auth, user_id: user.id) }
+  let!(:auth) { FactoryGirl.create(:auth, user_id: user.id) }
 
   let(:group_user_1) { FactoryGirl.create(:user)}
-  let(:auth_1) { FactoryGirl.create(:auth, user_id: group_user_1.id , name: "Group User 1", email: "user_1@example.com")}
+  let!(:auth_1) { FactoryGirl.create(:auth, user_id: group_user_1.id , name: "Group User 1", email: "user_1@example.com")}
 
   let(:group_user_2) { FactoryGirl.create(:user)}
-  let(:auth_2) { FactoryGirl.create(:auth, user_id: group_user_2 , name: "Group User 2", email: "user_2@example.com")}
+  let!(:auth_2) { FactoryGirl.create(:auth, user_id: group_user_2 , name: "Group User 2", email: "user_2@example.com")}
 
   let(:group_user_3) { FactoryGirl.create(:user)}
-  let(:auth_3) { FactoryGirl.create(:auth, user_id: group_user_3 , name: "Group User 3", email: "user_3@example.com")}
+  let!(:auth_3) { FactoryGirl.create(:auth, user_id: group_user_3 , name: "Group User 3", email: "user_3@example.com")}
 
   let(:group) { FactoryGirl.create(:group, owner_id: user.id) }
   before { group.users = [user, group_user_1, group_user_2, group_user_3] }  
@@ -24,6 +24,10 @@ describe "group pages" do
                                                            owner_id: user.id, 
                                                            open_date: nil
                                                            )}
+  let(:unset_spending_limit_group) { FactoryGirl.create(:group, name: "Unset Open Date", 
+                                                           owner_id: user.id, 
+                                                           spending_limit: nil
+                                                           )}
   
   let(:incorrect_user) { FactoryGirl.create(:user) }
   let(:incorrect_auth) { FactoryGirl.create(:auth, user_id: incorrect_user.id, 
@@ -33,7 +37,7 @@ describe "group pages" do
   
   subject { page }
 
-  describe "edit page" do 
+  describe "edit" do 
     describe "when not signed in" do
       before { visit edit_group_path(group) }
 
@@ -107,14 +111,14 @@ describe "group pages" do
     end
   end
 
-  describe "index page" do
+  describe "index" do
     before { visit groups_path }
 
     it { should have_selector 'h1', text: "All Groups" }
     it { should have_selector 'ul' }
   end
 
-  describe "new page" do
+  describe "new" do
     describe "when not signed in" do
       before { visit new_group_path }
 
@@ -154,36 +158,49 @@ describe "group pages" do
     end
   end
 
-  describe "show page" do
+  describe "show" do
     before { visit group_path(group) }
     
     it { should have_selector 'h1', text: group.name }
     
     describe "when not signed in" do
       it { should_not have_link 'Edit', href: edit_group_path(group)}
-      it { should_not have_selector 'label', text: 'Invite Someone to This Group' }
+      it { should_not have_selector 'label', text: 'Invite a User' }
       it "should not have selector #email" do
         within '.container' do
           expect(page).not_to have_selector "#email"
         end
       end
+
+      describe "with spending limit set" do
+        it { should_not have_selector 'h2', text: "Spending Limit: $50.00"}
+        it { should_not have_link 'edit', href: edit_spending_limit_path(group) }
+      end
+
+      describe "with spending limit unset" do
+        before { visit group_path(unset_spending_limit_group) }
+
+        it { should_not have_selector 'label', text: "Set Spending Limit" }
+        it { should_not have_selector 'input#spending_limit' }
+        it { should_not have_selector "input[type='submit'][value='Set']"}
+      end
         
       describe "with select date set" do
         it { should have_selector 'h2', text: 'Selection Date' }
-        it { should have_selector 'p', text: group.select_date.date_in_words }
-        it { should_not have_link 'edit', href: edit_selection_date_path(group) }
+        it { should have_selector 'span', text: group.select_date.date_in_words }
+        it { should_not have_link 'edit', href: edit_select_date_path(group) }
       end
 
       describe "with select date unset" do
         before { visit group_path(unset_select_date_group) }
 
-        it { should_not have_selector 'label', text: 'Set Selection Day'}
-        it { should_not have_selector '#selection_date_select_date' }
+        it { should_not have_selector 'label', text: 'Set Select Day'}
+        it { should_not have_selector '#select_date_select_date' }
       end
 
       describe "with open date set" do
         it { should have_selector 'h2', text: 'Open Date' }
-        it { should have_selector 'p', text: group.open_date.date_in_words }
+        it { should have_selector 'span', text: group.open_date.date_in_words }
         it { should_not have_link 'edit', href: edit_open_date_path(group) }
       end
 
@@ -209,44 +226,64 @@ describe "group pages" do
 
       describe "as group owner" do
         it { should have_link 'Edit', href: edit_group_path(group)}
-    
-        describe "with spending limit set" do
-          it { should have_selector 'h2', text: "Spending Limit: $50.00"}
-          it { should have_link 'edit', href: edit_spending_limit_path(group) }
-
-          describe "is able to change the spending limit" do
-            before { click_link 'edit', href: edit_spending_limit_path(group) }
-
-            it { should have_selector 'h1', text: "Edit Spending Limit" }
-          end
-        end
-
-        describe "with spending limit unset" do
-          pending
-        end
-
-        it { should have_selector 'label', text: 'Invite Someone to This Group' }
+        it { should have_selector 'label', text: 'Invite a User' }
         it "should have selector #email" do
           within '.container' do
             expect(page).to have_selector "#email"
           end
         end
 
-        describe "is able to visit group edit path" do
-          pending
+        describe "group edit link works" do
+          before { click_link "Edit", href: edit_group_path(group) }
+
+          it { should have_selector 'h1', text: "Edit #{group.name}" }
+          it { should have_selector 'input#group_name' }
+          it { should have_selector "input[type='submit'][value='Update Group']" }
+        end
+    
+        describe "invite a user to a group" do
+          it "should add an invite" do
+            within '.container' do
+               fill_in 'email', with: "test@example.com"
+
+               expect { click_button "Invite" }.to change(Invite, :count).by(1)
+             end
+           end
         end
 
-        describe "is able to invite a user to a group" do
-          pending
+        describe "with spending limit set" do
+          it { should_not have_selector 'label', text: "Set Spending Limit" }
+          it { should have_selector 'h2', text: "Spending Limit: $50.00" }
+          it { should have_link 'edit', href: edit_spending_limit_path(group) }
+
+          describe "the edit link works" do
+            before { click_link 'edit', href: edit_spending_limit_path(group) }
+
+            it { should have_selector 'h1', text: "Set Spending Limit" }
+            it { should have_selector '#spending_limit' }
+            it { should have_selector "input[type='submit'][value='Set']"}
+          end
         end
+
+        describe "with spending limit unset" do
+          before { visit group_path(unset_spending_limit_group) }
+          it { should have_selector 'label', text: "Set Spending Limit" }
+          it { should have_selector 'input#spending_limit' }
+          it { should have_selector "input[type='submit'][value='Set']"}
+        end
+
           
         describe "with select date set" do
           it { should have_selector 'h2', text: 'Selection Date' }
-          it { should have_selector 'p', text: group.select_date.date_in_words }
-          it { should have_link 'edit', href: edit_selection_date_path(group) }
+          it { should have_selector 'span', text: group.select_date.date_in_words }
+          it { should have_link 'edit', href: edit_select_date_path(group) }
 
-          describe "is able to change the select date" do
-            pending
+          describe "the edit link works" do
+            before { click_link 'edit', href: edit_select_date_path(group) }
+
+            it { should have_selector 'h1', text: "Reset Selection Day" }
+            it { should have_selector 'input#select_date' }
+            it { should have_selector "input[type='submit'][value='Set']"}
           end
         end
 
@@ -254,20 +291,30 @@ describe "group pages" do
           before { visit group_path(unset_select_date_group) }
 
           it { should have_selector 'label', text: 'Set Selection Day'}
-          it { should have_selector '#selection_date_select_date' }
+          it { should have_selector '#select_date' }
 
           describe "is able to set the select date" do
-            pending
+            before do
+              fill_in "select_date", with: "01/12/2014"
+              click_button "Set"
+            end
+
+            it { should have_selector 'h2', text: "Selection Date" }
+            it { should have_selector 'span', text: "Dec 01, 2014" }
           end
         end
 
         describe "with open date set" do
           it { should have_selector 'h2', text: 'Open Date' }
-          it { should have_selector 'p', text: group.open_date.date_in_words }
+          it { should have_selector 'span', text: group.open_date.date_in_words }
           it { should have_link 'edit', href: edit_open_date_path(group) }
 
-          describe "is able to change the open date" do
-            pending
+          describe "the edit link works" do
+            before { click_link 'edit', href: edit_open_date_path(group) }
+
+            it { should have_selector 'h1', text: "Reset Open Day" }
+            it { should have_selector 'input#open_date' }
+            it { should have_selector "input[type='submit'][value='Set']"}
           end
         end
 
@@ -275,20 +322,34 @@ describe "group pages" do
           before { visit group_path(unset_open_date_group) }
 
           it { should have_selector 'label', text: "Set Open Day" }
-          it { should have_selector '#open_date_open_date'}
+          it { should have_selector '#open_date'}
 
           describe "is able to set the open date" do
-            pending
+            before do
+              fill_in "open_date", with: "01/12/2014"
+              click_button "Set"
+            end
+
+            it { should have_selector 'h2', text: "Open Date" }
+            it { should have_selector 'span', text: "Dec 01, 2014" }
           end
         end
 
-        describe "has remove links" do
-          it { should have_link "remove", href: group_membership_path(group.id, group_user_1.id) }
-          it { should have_link "remove", href: group_membership_path(group.id, group_user_2.id) }
-          it { should have_link "remove", href: group_membership_path(group.id, group_user_3.id) }
+        describe "with members" do
+          it { should have_link group_user_1.view_name, href: user_path(group_user_1) }  
+          it { should have_link group_user_2.view_name, href: user_path(group_user_2) }  
+          it { should have_link group_user_3.view_name, href: user_path(group_user_3) }    
 
-          describe "and be able to remove users from group" do
-            pending
+          describe "has remove links" do
+            it { should have_link "remove", href: group_membership_path(group.id, group_user_1.id) }
+            it { should have_link "remove", href: group_membership_path(group.id, group_user_2.id) }
+            it { should have_link "remove", href: group_membership_path(group.id, group_user_3.id) }
+
+            describe "clicking removes users from group" do
+              before { click_link 'remove', href: group_membership_path(group.id, group_user_1.id) }
+
+              it { should_not have_link group_user_1.view_name, href: user_path(group_user_1) }
+            end
           end
         end  
       end
@@ -300,6 +361,18 @@ describe "group pages" do
         end
 
         it { should have_selector 'h2', text: "Spending Limit: $50.00"}
+        it { should_not have_link 'edit' }
+        describe "with members" do
+          it { should have_link group_user_1.view_name, href: user_path(group_user_1) }  
+          it { should have_link group_user_2.view_name, href: user_path(group_user_2) }  
+          it { should have_link group_user_3.view_name, href: user_path(group_user_3) }    
+
+          describe "has no remove links" do
+            it { should_not have_link "remove", href: group_membership_path(group.id, group_user_1.id) }
+            it { should_not have_link "remove", href: group_membership_path(group.id, group_user_2.id) }
+            it { should_not have_link "remove", href: group_membership_path(group.id, group_user_3.id) }
+          end
+        end 
       end    
     end
   end

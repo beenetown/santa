@@ -1,0 +1,9 @@
+$("#select-date-set").addClass('sidebar-form').html("<label>Set Selection Day</label><%= escape_javascript render partial: 'select_dates/form', locals: { http_req: :put} %>");
+
+$('html').click(function(e){
+  $('#select-date-set').removeClass('sidebar-form').html("<%= escape_javascript render 'select_dates/show' %>");    
+});
+
+$('#select_date').click(function(e) {
+  e.stopPropagation();
+});

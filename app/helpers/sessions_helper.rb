@@ -40,9 +40,13 @@ module SessionsHelper
   end
 
   def standard_sign_in(email, password)
-    auth = Auth.find_by(email: email)
+    auth = Auth.find_by(email: email.downcase)
     user = auth.user if auth
-    if auth && auth.authenticate(password)
+
+    if auth.third_party 
+      flash[:alert] = "Please use #{auth.provider} to sign in."
+      redirect_to :back
+    elsif auth && auth.authenticate(password)
       sign_in user
       flash[:notice] = "Welcome back #{user.view_name}!"
       redirect_to user

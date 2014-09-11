@@ -1,38 +1,5 @@
-<div class="container">
-  <h1>
-    <%# image_tag placeholder_image size: 35 %>
-    <%= @user.view_name %> 
-    <% if signed_in? && @user == current_user %>
-      <span>
-        <%= link_to "Edit", user_auths_path(@user) %>
-      </span>
-    <% end %>
-  </h1>
-  
-  <% if @groups.any? || @user == current_user %>
-    <h2>Groups</h2>
-  <% end %>
-  
-  <ul>
-    <% @groups.alphabetize.each do |group| %>
-      <li>
-        <%= image_tag placeholder_image size: 20 %>
-        <%= link_to group.name, group %>
-          <% if current_user && @user == current_user %>
-            <span>
-              <%= link_to "unjoin", group_membership_path(group.id, @user.id), method: :delete, data: { confirm: "Are you sure you want to unjoin this group?" } %>
-            </span>
-          <% end %>
-      </li>
-    <% end %>
-  </ul>
-    
-    <% if signed_in? && @user == current_user %>
-      <div class="users-accept-form">
-        <%= button_to "Start New Group", new_group_path, method: :get, class: "large-btn bot-10 top-5" %>
-      </div>
-    <% end %>
-
+<div class="sidebar minimized">
+  <h1>Info<span class="minimize">-</span><span class="maximize">+</span></h1>
   <% if @user == current_user && @user.invites.any? %>
     <div>
       <h2>Group Invitations</h2>
@@ -75,4 +42,39 @@
   <div>
     <h2>Gift Lists<span> - coming soon!</span></h2>
   </div>
+</div>
+<div class="content">
+  <h1>
+    <%# image_tag placeholder_image size: 35 %>
+    <%= @user.view_name %> 
+    <% if signed_in? && @user == current_user %>
+      <span>
+        <%= link_to "Edit", user_auths_path(@user) %>
+      </span>
+    <% end %>
+  </h1>
+  
+  <% if @groups.any? || @user == current_user %>
+    <h2>Groups</h2>
+  <% end %>
+  
+  <ul>
+    <% @groups.alphabetize.each do |group| %>
+      <li>
+        <%= image_tag placeholder_image size: 20 %>
+        <%= link_to group.name, group %>
+          <% if current_user && @user == current_user %>
+            <span>
+              <%= link_to "unjoin", group_membership_path(group.id, @user.id), method: :delete, data: { confirm: "Are you sure you want to unjoin this group?" } unless group.owner == current_user %>
+            </span>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+    
+    <% if signed_in? && @user == current_user %>
+      <div class="users-accept-form">
+        <%= button_to "Start New Group", new_group_path, method: :get, class: "large-btn bot-10 top-5" %>
+      </div>
+    <% end %>
 </div>

@@ -1,0 +1,9 @@
+$("#spending-limit-set").addClass('sidebar-form').html("<label>Set Spending Limit</label><%= escape_javascript render partial: 'spending_limits/form', locals: { http_req: :put} %>");
+
+$('html').click(function(e){
+  $('#spending-limit-set').removeClass('sidebar-form').html("<%= escape_javascript render partial: 'spending_limits/show'%>");    
+});
+
+$('#spending_limit').click(function(e) {
+  e.stopPropagation();
+});

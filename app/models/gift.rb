@@ -23,6 +23,7 @@ class Gift < ActiveRecord::Base
       groups = Group.where(select_date: date).to_a
 
       groups.each do |group|
+        next if group.user_ids.length < 2
         Gift.destroy_all(group_id: group.id)
         
         unused_ids = group.user_ids.sort

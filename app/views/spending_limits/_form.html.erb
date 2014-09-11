@@ -1,0 +1,9 @@
+<%= form_tag :spending_limit, method: http_req do %>
+  <div class="fields">
+    <%= text_field_tag "spending_limit", nil, placeholder: "$20", autofocus: true %>
+    <%= hidden_field_tag :group_id, @group.id %>
+    <div class="submit">
+      <%= submit_tag "Set" %>
+    </div>
+  </div>
+<% end %>

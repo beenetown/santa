@@ -24,3 +24,17 @@ $(document).on "ready page:load", ->
 
   $('.close').click ->
     $(this).parent().hide()
+
+  $('.minimize').click ->
+    $(this).parent().parent().children().hide()
+    $(this).hide()
+    $('.maximize').show()
+    $('.sidebar > h1').show()
+    $('.sidebar').addClass('minimized')
+
+  $('.maximize').click ->
+    $(this).parent().parent().children().show()
+    $('.sidebar').removeClass('minimized')
+    $(this).hide()
+    $('.minimize').show()
+

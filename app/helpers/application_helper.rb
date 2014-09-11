@@ -42,4 +42,13 @@ module ApplicationHelper
     remember_token = User.digest(cookies[:remember_token])
     @current_user ||= User.find_by(remember_token: remember_token)
   end
+
+  def store_location
+    session[:return_to] = request.request_url
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
 end

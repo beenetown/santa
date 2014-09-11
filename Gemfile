@@ -4,10 +4,10 @@ gem 'rails', '4.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'omniauth-amazon'
 gem 'omniauth-facebook'
-# gem 'omniauth-google'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 
+gem 'mysql2'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -35,13 +35,11 @@ group :doc do
 end
 
 group :development do
-  gem 'sqlite3'
-  # gem 'terminal-notifier-guard', '1.5.3'
   gem 'terminal-notifier-guard', github: 'elbii/terminal-notifier-guard', branch: :check_path
   gem 'guard-rspec', '2.5.0'
+  gem 'rvm-capistrano'
 end
 
 group :production do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end

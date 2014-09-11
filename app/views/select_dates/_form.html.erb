@@ -1,0 +1,9 @@
+<%= form_tag :select_date, method: http_req do %>
+  <div class="fields">
+    <%= date_field_tag "select_date" %>
+    <%= hidden_field_tag :group_id, @group.id %>
+    <div class="submit">
+      <%= submit_tag "Set" %>
+    </div>
+  </div>
+<% end %>

@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20140521141959) do
     t.boolean  "third_party",     default: false
   end
 
-  add_index "auths", ["email"], name: "index_auths_on_email"
-  add_index "auths", ["uid", "provider"], name: "index_auths_on_uid_and_provider", unique: true
-  add_index "auths", ["uid"], name: "index_auths_on_uid"
-  add_index "auths", ["user_id", "provider"], name: "index_auths_on_user_id_and_provider", unique: true
+  add_index "auths", ["email"], name: "index_auths_on_email", using: :btree
+  add_index "auths", ["uid", "provider"], name: "index_auths_on_uid_and_provider", unique: true, using: :btree
+  add_index "auths", ["uid"], name: "index_auths_on_uid", using: :btree
+  add_index "auths", ["user_id", "provider"], name: "index_auths_on_user_id_and_provider", unique: true, using: :btree
 
   create_table "gifts", force: true do |t|
     t.integer  "gifter_id"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20140521141959) do
     t.datetime "updated_at"
   end
 
-  add_index "gifts", ["giftee_id", "gifter_id", "group_id"], name: "index_gifts_on_giftee_id_and_gifter_id_and_group_id", unique: true
-  add_index "gifts", ["giftee_id"], name: "index_gifts_on_giftee_id"
-  add_index "gifts", ["gifter_id"], name: "index_gifts_on_gifter_id"
+  add_index "gifts", ["giftee_id", "gifter_id", "group_id"], name: "index_gifts_on_giftee_id_and_gifter_id_and_group_id", unique: true, using: :btree
+  add_index "gifts", ["giftee_id"], name: "index_gifts_on_giftee_id", using: :btree
+  add_index "gifts", ["gifter_id"], name: "index_gifts_on_gifter_id", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"

@@ -1,0 +1,9 @@
+<div id="spending-limit-set">
+  <h2>
+    Spending Limit: <span><%= number_to_currency(@group.spending_limit) %></span>
+
+    <% if current_user_is_group_owner %>
+      <span><%= link_to "edit", edit_spending_limit_path(@group), remote: true, class: 'edit-link' %></span>
+    <% end %>
+  </h2>
+</div> 

@@ -3,7 +3,6 @@ Santa::Application.routes.draw do
     resources :memberships, only: :destroy
   end
 
-  # resources :invites
   post "invite_user", to: "invites#create"
   post "accept_invite", to: "invites#destroy"
 
@@ -20,15 +19,15 @@ Santa::Application.routes.draw do
   get '/auth/google', to: redirect('/auth/google_oauth2')
   get '/auth/failure', to: redirect('/')
 
-  resources :selection_dates, only: [:new, :create, :update, :edit]
-  post "selection_day", to: "selection_dates#create"
-  # get 'edit_selection_date', to: "selection_dates#edit"
+  resources :select_dates, only: [:new, :edit, :update]
+  post "select_dates/:id", to: "select_dates#create"
+
+  resources :open_dates, only: [:new, :edit, :update]
+  post "open_dates/:id", to: "open_dates#create"
+
+  resources :spending_limits, only: [:new, :edit, :update]
+  post "spending_limits/:id", to: "spending_limits#create"
   
-  resources :open_dates, only: [:new, :create, :update, :edit]
-  post "opening_day",   to: "open_dates#create" 
-
-  resources :spending_limits
-
   resources :users do 
     resources :auths, only: [:edit, :update, :index]
   end
@@ -38,5 +37,4 @@ Santa::Application.routes.draw do
 
   root "static#home"
   get "help", to: "static#help"
-
 end

@@ -79,7 +79,7 @@ body, select, input, textarea {
 }
 
 /* headers (h1,h2,etc) have no default font-size or margin. define those yourself. */
-h1,h2,h3,h4,h5,h6 { font-weight: bold; }
+h1,h2,h3,h4,h5,h6 { font-weight: bold; display: inline-block; }
 
 /* always force a scrollbar in non-IE: */
 html { overflow-y: scroll; }
@@ -123,7 +123,7 @@ input[type="checkbox"] { vertical-align: bottom; }
 .ie6 input { vertical-align: text-bottom; }
 
 /* hand cursor on clickable input elements */
-label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; display: inline-block;}
 
 /* webkit browsers add a 2px margin outside the chrome of form elements */
 button, input, select, textarea { margin: 0; }

@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
-  def new    
+  def new  
   end
 
   def create
+    # raise env['omniauth.auth'].to_yaml
+    
     auth_hash = env['omniauth.auth']
     if auth_hash
       email = auth_hash["info"]["email"] 

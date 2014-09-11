@@ -17,6 +17,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @users = @group.users
+    if signed_in?
+      @user = current_user
+      @giftee = Gift.find_by(group_id: @group.id, gifter_id: @user.id).giftee if @group.select_date && @group.select_date < Time.now
+    end
   end
 
   # GET /groups/new
@@ -86,6 +90,5 @@ class GroupsController < ApplicationController
         flash[:alert] = "You don't have access to that!"
         redirect_to root_url
       end
-
     end
 end

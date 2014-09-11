@@ -24,15 +24,20 @@ class MembershipsController < ApplicationController
     @group = Group.find(params[:group_id])
     @user = User.find(params[:id])
 
-    #reassign gift
-    # if Time.now.to_date > @group.select_date
-      reassign_gift(@group, @user) if @group.select_date
-    # end
+    if @user == @group.owner
+      flash[:alert] = "The owner cannot be removed from the group!"
+    else    
 
-    group_user = Membership.find_by(user_id: @user.id, group_id: @group.id)
-    group_user.destroy
+      #reassign gift
+      if @group.select_date && Time.now.to_date > @group.select_date
+        reassign_gift(@group, @user) 
+      end
 
-    flash[:notice] = "#{@user.view_name} was removed from the group!"
+      group_user = Membership.find_by(user_id: @user.id, group_id: @group.id)
+      group_user.destroy
+
+      flash[:notice] = "#{@user.view_name} was removed from the group!"
+    end
     redirect_to :back
   end
 
