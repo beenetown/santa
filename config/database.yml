@@ -13,7 +13,7 @@ development:
   database: mysql_development
   pool: '5'
   username: root
-  password: 
+  password: ENV['DB_PASSWORD']
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
