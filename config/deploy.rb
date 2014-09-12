@@ -1,16 +1,19 @@
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 
 # be sure to change these
 set :user, 'john'
 set :domain, '192.3.159.4'
-set :application, 'santamatic'
+set :application, 'santa'
+
+set :ssh_options, {:forward_agent => true}
 
 default_run_options[:pty] = true
 set :use_sudo, false
 
 # adjust if you are using RVM, remove if you are not
 set :rvm_type, :user
-set :rvm_ruby_string, 'ruby-2.0.0-p451'
+set :rvm_ruby_string, '2.0.0-p451'
 require 'rvm/capistrano'
 
 # file paths
@@ -35,7 +38,7 @@ role :db, domain, :primary => true
 # default_environment['GEM_PATH']='<your paths>:/usr/lib/ruby/gems/1.8'
 
 # miscellaneous options
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 set :scm, 'git'
 set :branch, 'master'
 
