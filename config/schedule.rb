@@ -1,7 +1,7 @@
 set :output, "#{path}/log/cron.log"
 set :environment, :production
 
-every 1.minutes do
+every 1.days do
   runner "Gift.pull_from_hat"
 end
 
