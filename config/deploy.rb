@@ -3,7 +3,7 @@ require 'rvm/capistrano'
 
 # be sure to change these
 set :user, 'john'
-set :domain, '192.3.159.4'
+set :domain, 'santamatic.in'
 set :application, 'santa'
 
 set :ssh_options, {:forward_agent => true}
