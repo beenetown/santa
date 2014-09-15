@@ -32,5 +32,5 @@ production:
   database: mysql_production
   pool: '5'
   username: root
-  password: ENV["DB_PASSWORD"]
+  password: <% ENV["DB_PASSWORD"] %>
   host: localhost
