@@ -13,7 +13,7 @@ development:
   database: mysql_development
   pool: '5'
   username: root
-  password: cita@7634
+  password: 
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -24,7 +24,7 @@ test:
   database: mysql_test
   pool: '5'
   username: root
-  password: cita@7634
+  password: 
   host: localhost
 
 production:
@@ -32,5 +32,5 @@ production:
   database: mysql_production
   pool: '5'
   username: root
-  password: cita@7634
+  password: <%= ENV['DB_PASSWORD'] %>
   host: localhost
