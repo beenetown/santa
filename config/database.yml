@@ -32,5 +32,5 @@ production:
   database: mysql_production
   pool: '5'
   username: root
-  password: 'tica@7634'
+  password: tica@7634
   host: localhost
