@@ -35,7 +35,7 @@ group :doc do
 end
 
 group :development do
-  gem 'terminal-notifier-guard', github: 'elbii/terminal-notifier-guard', branch: :check_path
+  gem 'terminal-notifier-guard', '~>1.5.0'
   gem 'guard-rspec', '2.5.0'
   gem 'rvm-capistrano'
 end
