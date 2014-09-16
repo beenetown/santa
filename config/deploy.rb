@@ -46,7 +46,6 @@ namespace :deploy do
   desc "cause Passenger to initiate a restart" 
   task :restart do 
     run "touch #{current_path}/tmp/ restart.txt" 
-    run "sudo /etc/init.d/apache2 restart"
   end 
 
   desc "reload the database with seed data" 
