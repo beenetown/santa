@@ -2,4 +2,4 @@
 
 Ruby version - 4.0.0-p451
 
-Services - use whenever gem to create the cronjob
+Services - use whenever gem to create the cronjob that runs Gift.pull_from_hat everyday.
