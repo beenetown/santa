@@ -1,79 +1,77 @@
-<!-- <div class="container"> -->
-  <div class="minimized sidebar">
-    <h1>Group Info<span class="minimize">-</span><span class="maximize">+</span></h1>
-    <h2>Admin: <span><%= link_to @group.owner.view_name, @group.owner %></span></h2>
-    <% if current_user_is_group_member && @group.spending_limit %>
-      <%= render 'spending_limits/show' %>
-    <% elsif current_user_is_group_owner && !@group.spending_limit %>
-      <div class="sidebar-form">  
-        <label>Set Spending Limit</label>
-        <%= render partial: 'spending_limits/form', locals: { http_req: :post} %>
+<div class="minimized sidebar">
+  <h1>Group Info<span class="minimize">-</span><span class="maximize">+</span></h1>
+  <h2>Admin: <span><%= link_to @group.owner.view_name, @group.owner %></span></h2>
+  <% if current_user_is_group_member && @group.spending_limit %>
+    <%= render 'spending_limits/show' %>
+  <% elsif current_user_is_group_owner && !@group.spending_limit %>
+    <div class="sidebar-form">  
+      <label>Set Spending Limit</label>
+      <%= render partial: 'spending_limits/form', locals: { http_req: :post} %>
+    </div>
+  <% end %>
+
+  <% if current_user_is_group_owner %>
+    <% if !@group.select_date %>
+      <div class="sidebar-form">
+        <label>Set Selection Day</label>
+        <%= render partial: 'select_dates/form', locals: { http_req: :post} %>
       </div>
-    <% end %>
-
-    <% if current_user_is_group_owner %>
-      <% if !@group.select_date %>
-        <div class="sidebar-form">
-          <label>Set Selection Day</label>
-          <%= render partial: 'select_dates/form', locals: { http_req: :post} %>
-        </div>
-      <% else %>
-        <%= render 'select_dates/show' %>
-      <% end %>
-
-      <% if !@group.open_date %>
-        <div class="sidebar-form">
-          <label>Set Open Day</label>
-          <%= render partial: 'open_dates/form', locals: { http_req: :post} %>
-        </div>
-      <% else %>
-        <%= render 'open_dates/show' %>
-      <% end %>
     <% else %>
-      <% if @group.select_date %>
-        <%= render 'select_dates/show' %>
-      <% end %>
-      
-      <% if @group.open_date %>
-        <%= render 'open_dates/show' %>
-      <% end %>
+      <%= render 'select_dates/show' %>
     <% end %>
-    <% if current_user_is_group_member && @group.select_date && @group.select_date < Time.now %>
-      <h2>Buy for:  <%= link_to @giftee.view_name, @giftee %></h2>
-    <% end %>
-  </div>
-  <div class="content">
-    <h1>
-      <%= @group.name %>
-      <% if current_user_is_group_owner %>
-        <span>
-          <%= link_to 'Edit', edit_group_path(@group) %>
-        </span>  
-      <% end %>
-    </h1>
 
-    <% if current_user_is_group_owner %>
-      <div class="invite-form">
-        <label>Invite a User</label>
-        <%= render 'invites/form' %>
+    <% if !@group.open_date %>
+      <div class="sidebar-form">
+        <label>Set Open Day</label>
+        <%= render partial: 'open_dates/form', locals: { http_req: :post} %>
       </div>
+    <% else %>
+      <%= render 'open_dates/show' %>
     <% end %>
+  <% else %>
+    <% if @group.select_date %>
+      <%= render 'select_dates/show' %>
+    <% end %>
+    
+    <% if @group.open_date %>
+      <%= render 'open_dates/show' %>
+    <% end %>
+  <% end %>
+  <% if current_user_is_group_member && @group.select_date && @group.select_date < Time.now %>
+    <h2>Buy for:  <%= link_to @giftee.view_name, @giftee %></h2>
+  <% end %>
+</div>
+<div class="content">
+  <h1>
+    <%= @group.name %>
+    <% if current_user_is_group_owner %>
+      <span>
+        <%= link_to 'Edit', edit_group_path(@group) %>
+      </span>  
+    <% end %>
+  </h1>
 
-    
-    
-    <% if @users.any? %>
-      <h2>Group Members</h2>
-      <ul>
-        <% @users.sort.each do |user| %>
-          <li>
-            <%= image_tag placeholder_image size: 25 %>
-            <%= link_to user.view_name, user %>
-            <span>
-              <%= link_to "remove", group_membership_path(@group.id, user.id), method: :delete, data: { confirm: "Are you sure you want to remove #{user.view_name} from this group?" } if current_user_is_group_owner && user != current_user%>
-            </span>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-<!-- </div> -->
+  <% if current_user_is_group_owner %>
+    <div class="invite-form">
+      <label>Invite a User</label>
+      <%= render 'invites/form' %>
+    </div>
+  <% end %>
+
+  
+  
+  <% if @users.any? %>
+    <h2>Group Members</h2>
+    <ul>
+      <% @users.sort.each do |user| %>
+        <li>
+          <%= image_tag placeholder_image size: 25 %>
+          <%= link_to user.view_name, user %>
+          <span>
+            <%= link_to "remove", group_membership_path(@group.id, user.id), method: :delete, data: { confirm: "Are you sure you want to remove #{user.view_name} from this group?" } if current_user_is_group_owner && user != current_user%>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
