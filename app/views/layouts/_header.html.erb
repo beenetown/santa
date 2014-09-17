@@ -35,7 +35,7 @@
           </div>
           <% end %>
           or, sign in with: <br>
-          <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+          <%# link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
           <%= link_to(image_tag('social_buttons/google_oauth2_32.png'), '/auth/google') %>
           <%# link_to(image_tag('social_buttons/facebook_32.png'), '/auth/facebook') %>
           <%# link_to(image_tag('social_buttons/twitter_32.png'), '/auth/twitter') %>
@@ -44,7 +44,7 @@
         <% if signed_in? %>
           <li id="social links">
             <p>Link to:</p>
-            <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+            <%# link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
             <%= link_to(image_tag('social_buttons/google_oauth2_32.png'), '/auth/google') %>
           </li>
         <% end %>

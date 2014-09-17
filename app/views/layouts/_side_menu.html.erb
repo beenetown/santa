@@ -11,8 +11,8 @@
         <li>Signed in as <%= current_user.view_name %></li>
       <% end %>
       <li>
-        <%= link_to "Home", root_path unless signed_in? %>
-        <%= link_to "Home", current_user if signed_in? %>
+        <%= link_to "Home", signed_in? ? current_user : root_path %>
+        <%# link_to "Home", current_user if signed_in? %>
       </li>
       <li><%= link_to "Help", static_help_path %></li>
       <li><%= link_to "Users", users_path %></li>
@@ -31,7 +31,7 @@
           <%= submit_tag "Sign In" %>
         <% end %>
         or, sign in with: <br>
-        <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+        <%# link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
         <%= link_to(image_tag('social_buttons/google_32.png'), '/auth/google') %>
         <%# link_to(image_tag('social_buttons/facebook_32.png'), '/auth/facebook') %>
         <%# link_to(image_tag('social_buttons/twitter_32.png'), '/auth/twitter') %>
@@ -40,7 +40,7 @@
       <% if signed_in? %>
         <li id="social links">
           <p>Link to:</p>
-          <%= link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
+          <%# link_to(image_tag('social_buttons/amazon_32.png'), '/auth/amazon') %>
           <%= link_to(image_tag('social_buttons/google_32.png'), '/auth/google') %>
         </li>
       <% end %>

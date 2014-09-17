@@ -2263,13 +2263,17 @@ html {
       span {
         font-size: 0.8em;
       }
-        span + span {
-        font-size: 0.4em;
+      span + span {
+      font-size: 0.4em;
         a {
           text-decoration: none;
           color: $darkGray;
         }
-      }  
+      }
+      #admin-link {
+        text-decoration: none;
+        color: $darkGray;    
+      }
     }
     h3 {
       font-size: 2em;
@@ -2308,7 +2312,6 @@ html {
         h2 {
           font-size: 1.5em;
         }
-
         span {
           float: right;
           font-size: 0.5em;
@@ -2326,7 +2329,6 @@ html {
       font-size: 0.8em;
       float: none;
     }
-
   }
   .content {
     width: 60%;
@@ -2417,6 +2419,7 @@ html {
       width: 75%;
       margin: 0 auto;
       font-size: 2em;
+      margin-bottom: 1em;
     }
 
     .giftee-span {

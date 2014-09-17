@@ -38,6 +38,6 @@ describe "static pages" do
     before { visit help_path }
 
     it { should have_selector 'h1', text: "Help" }
-    it { should have_content "help page" }
+    it { should have_content "This app is designed to make it easy" }
   end
 end

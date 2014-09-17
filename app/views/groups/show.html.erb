@@ -1,6 +1,6 @@
 <div class="minimized sidebar">
   <h1>Group Info<span class="minimize">-</span><span class="maximize">+</span></h1>
-  <h2>Admin: <span><%= link_to @group.owner.view_name, @group.owner %></span></h2>
+  <h2>Admin: <span><%= link_to @group.owner.view_name, @group.owner, id: "admin-link" %></span></h2>
   <% if current_user_is_group_member && @group.spending_limit %>
     <%= render 'spending_limits/show' %>
   <% elsif current_user_is_group_owner && !@group.spending_limit %>
