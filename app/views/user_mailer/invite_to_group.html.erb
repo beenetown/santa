@@ -1,4 +1,4 @@
-<p><%= @user.view_name %>,</p>
+<p><%= @user.view_name || "Hi" %>,</p>
 
 <p>
   You've been invited to join the Secret Santa group, <%= @group.name %>. <%= link_to "Sign in ", signin_url %>to accept.

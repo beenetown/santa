@@ -13,9 +13,7 @@ class Gift < ActiveRecord::Base
     hit_rescue = false
 
     unless no_output
-    time1 = Time.now() #for timer
-      puts "======================================================================"
-      puts "Pulling From Hat"
+      time1 = Time.now() #for timer
     end
     
     date ||= Time.now.to_date 
@@ -46,7 +44,7 @@ class Gift < ActiveRecord::Base
       unless no_output
         time2 = Time.now() #for timer
         puts "======================================================================"
-        puts "hit system stack error rescue" if hit_rescue
+        puts "hit system stack error rescue #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')}" if hit_rescue
         puts "pulled_from_hat completed #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')} in #{time2 - time1} seconds"
         puts "======================================================================"
       end
@@ -55,7 +53,6 @@ class Gift < ActiveRecord::Base
 
 
   def self.unpicked_giftee_id(unused_ids, gifter_id, last_id)
-    # return SystemStackError if unused_ids.length == 1 && gifter_id == unused_ids[0]    
     return last_id if unused_ids.length == 2 && unused_ids.include?(last_id)
       
     # returns a random id unless it is the gifter_id
