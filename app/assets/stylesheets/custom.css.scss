@@ -47,587 +47,593 @@ $darkGreen: #4e6153;
 $lightRed: #914141;
 $darkRed: #600;
 
-.top-5 {margin-top: 5px;}
-.bot-5 {margin-bottom: 5px;}
-.top-10 {margin-top: 10px;}
-.bot-10 {margin-bottom: 10px;}
+$tierTop: 1000;
+$tierMid: 100;
+$tierBot: 1;
+$tierSub: -2;
 
-.center { margin: 0 auto; }
-.left { float: left; }
-.right { float: right; }
+// all device types
+@media all {
+  .top-5 {margin-top: 5px;}
+  .bot-5 {margin-bottom: 5px;}
+  .top-10 {margin-top: 10px;}
+  .bot-10 {margin-bottom: 10px;}
 
-*, *:before, *:after {@include box_sizing;}
+  .center { margin: 0 auto; }
+  .left { float: left; }
+  .right { float: right; }
 
-html, body{height:100%;}
+  *, *:before, *:after {@include box_sizing;}
 
-html {
-  background-color: $offWhite;
-}
+  html, body{height:100%;}
 
-header {
-  width: 100%;
-  height: 60px;
-  background-color: $white;
-  box-shadow: 0px 2px 3px 0px $darkGreen;
-  position: fixed;
-  top: 0;
-}
-
-.header {
-  height: 100%;
-  margin: 0 auto;
-} 
-
-#show-nav {
-  float: right;
-  cursor: pointer;
-  display: inline-block;
-  width: 32px;
-  margin-top: 15px;
-  img {
-    width: 100%;
+  html {
+    background-color: $offWhite;
   }
-}
 
-#nav {
-  right: 7.5%;
-  position: absolute;
-  top: 75px;
-  display: none;
-  color: $darkGray;
-  box-shadow: 0 1px 1px 0px $lightGray;
-  width: 40%;
-  background-color: $white;
-  z-index: 99;
-  
-  span {
-    float:right;
-    color: $lightGray;
-    margin-right: 10px;
+  header {
+    width: 100%;
+    height: 60px;
+    background-color: $white;
+    box-shadow: 0px 2px 2px 0px $lightGreen;
+    position: fixed;
+    top: 0;
+  }
+
+  .header {
+    height: 100%;
+    margin: 0 auto;
+  } 
+
+  #show-nav {
+    float: right;
     cursor: pointer;
-    font-size: 1.2em;
-  }
-  ul {
-    list-style: none;
-    padding: 20px 0 5px 0;
-    font-size: 2em;
-    margin: 0 25px 0 25px;
-
-    li {
-      &:first-child {
-      font-weight: bold;
-      }
-      a {
-        color: $darkGray;
-        text-decoration: none;
-      }
-    }
-    .divider {
-      border-bottom: 1px solid
-    }
-  }
-}
-
-#nav:after, #nav:before {
-  bottom: 100%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-#nav:after {
-  border-color: rgba(0, 0, 0, 0);
-  border-bottom-color: $white;
-  border-width: 10px;
-  margin-left: -10px;
-}
-#nav:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-bottom-color: $lightLightGray;
-  border-width: 11px;
-  margin-left: -11px;
-}
-
-#show-signin {cursor: pointer;}
-#signin {
-  display:none;
-  font-size: 1em;
-  background-color: $white;
-  .fields {
-    input {
-      width: 100%;
-      margin-bottom: 5px;
-      padding: 2px 0 2px 3px;
-      @include rounded(0.1em);
-      background-color: $lightLightGray;
-      border: none;
-    }
-  }
-  .submit {
-    width: 50%;
-    input {
-      font-size: 0.7em;
-      color: $white;
-      padding: 5px;
-      @include buttonBackground;
-      @include rounded;
-    }
-  }
-  a {
-    margin: 0 0 20px 10px;
-  }
-}
-
-// // content
-.container {
-  margin: 0 auto;
-  margin-top: 80px;
-  z-index: -2;
-  // height: 100%;
-}
-.hero {
-  background-color: $darkGray;
-  font-size: 2em;
-  width: 60%;
-  height: 400px;
-  padding-top: 2em;
-  margin: auto;
-  color: white;
-  text-align: center;
-  h1, h2, h3 {
-    span {
-      font-size: 0.4em;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
-  }
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.5em;  
-  }
-  h3 {
-    font-size: 1em;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    a {
-      text-decoration: none;
-      color: $darkGray;
-    }
-  }
-  p {
-    margin-top: 5px;
-    a {
-      color: white;
-    }
-  }
-}
-.content {
-  min-height: 100%;
-  background-color: white;
-  box-shadow: 0 1px 1px 0px $lightGray;
-  @include rounded-top;
-  h1, h2, h3 {
-    padding: 0 12.5% 0 12.5%;
-  }
-  h1 {
-    @include rounded-top(0.2em);
-    color: $lightLightGreen;
-    background-color: $lightGreen;
-    font-size: 2em;
-    padding-top: 8px;
-    padding-bottom: 5px;
-    width: 100%;
-    span {
-      font-size: 0.4em;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
+    display: inline-block;
+    width: 32px;
+    margin-top: 15px;
     img {
-      @include rounded(0.2em);
+      width: 100%;
     }
   }
-  h2 {
-    font-size: 1.5em;
+
+  #nav {
+    right: 7.5%;
+    position: absolute;
+    top: 75px;
+    display: none;
+    color: $darkGray;
+    box-shadow: 0 1px 1px 0px $lightGray;
+    width: 40%;
+    background-color: $white;
+    z-index: $tierMid;
+    
     span {
-      font-size: 0.8em;
+      float:right;
+      color: $lightGray;
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
     }
-    span + span {
-      font-size: 0.4em;
-    a {
-      text-decoration: none;
-      color: $darkGray;
-    }  
+    ul {
+      list-style: none;
+      padding: 20px 0 5px 0;
+      font-size: 2em;
+      margin: 0 25px 0 25px;
+
+      li {
+        &:first-child {
+        font-weight: bold;
+        }
+        a {
+          color: $darkGray;
+          text-decoration: none;
+        }
+      }
+      .divider {
+        border-bottom: 1px solid
+      }
+    }
   }
-  h3 {
+
+  #nav:after, #nav:before {
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  #nav:after {
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: $white;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  #nav:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: $lightLightGray;
+    border-width: 11px;
+    margin-left: -11px;
+  }
+
+  #show-signin {cursor: pointer;}
+  #signin {
+    display:none;
+    font-size: 1em;
+    background-color: $white;
+    .fields {
+      input {
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 2px 0 2px 3px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+      }
+    }
+    .submit {
+      width: 50%;
+      input {
+        font-size: 0.7em;
+        color: $white;
+        padding: 5px;
+        @include buttonBackground;
+        @include rounded;
+      }
+    }
+    a {
+      margin: 0 0 20px 10px;
+    }
+  }
+
+  // // content
+  .container {
+    margin: 0 auto;
+    margin-top: 80px;
+  }
+  .hero {
+    background-color: $darkGray;
     font-size: 2em;
+    width: 60%;
+    height: 400px;
+    padding-top: 2em;
+    margin: auto;
+    color: white;
+    text-align: center;
+    h1, h2, h3 {
       span {
-        font-size: 1em;
+        font-size: 0.4em;
         a {
           text-decoration: none;
           color: $darkGray;
         }
       }
     }
-  }
-  ul {
-    font-size: 2em;
-    list-style: none;
-    margin: 0 auto;
-    width: 75%;
-    img {
-      @include rounded(0.2em);
+    h1 {
+      font-size: 2em;
     }
     h2 {
-      display: inline-block;
-      padding: 0;
+      font-size: 1.5em;  
     }
-    a {
-      text-decoration: none;
-      color: $darkGray;
+    h3 {
+      font-size: 1em;
     }
-    li {
-      font-size: 0.8em;
-      padding: 10px 5px 10px 1px;
-      border-bottom: 1px solid $lightGray;
-      &:last-child {
-        border-bottom: none;
+    ul {
+      list-style: none;
+      margin: 0;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }
+    p {
+      margin-top: 5px;
+      a {
+        color: white;
+      }
+    }
+  }
+  .content {
+    min-height: 100%;
+    background-color: white;
+    box-shadow: 0 1px 1px 0px $lightGray;
+    @include rounded-top;
+    h1, h2, h3 {
+      padding: 0 12.5% 0 12.5%;
+    }
+    h1 {
+      @include rounded-top(0.2em);
+      color: $lightLightGreen;
+      background-color: $lightGreen;
+      font-size: 2em;
+      padding-top: 8px;
+      padding-bottom: 5px;
+      width: 100%;
+      span {
+        font-size: 0.4em;
+        a {
+          text-decoration: none;
+          color: $darkGray;
+        }
+      }
+      img {
+        @include rounded(0.2em);
+      }
+    }
+    h2 {
+      font-size: 1.5em;
+      span {
+        font-size: 0.8em;
+      }
+      span + span {
+        font-size: 0.4em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }  
+    }
+    h3 {
+      font-size: 2em;
+        span {
+          font-size: 1em;
+          a {
+            text-decoration: none;
+            color: $darkGray;
+          }
+        }
+      }
+    }
+    ul {
+      font-size: 2em;
+      list-style: none;
+      margin: 0 auto;
+      width: 75%;
+      img {
+        @include rounded(0.2em);
       }
       h2 {
-        font-size: 1.5em;
+        display: inline-block;
+        padding: 0;
       }
-      span {
-        float: right;
-        font-size: 0.5em;
-        margin-top: 1em;
-      }
-    }
-  }  
-  p {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 2em;
-  }
-  .giftee-span {
-    font-size: 0.8em;
-    float: none;
-  }
-}
-
-.sidebar > * {}
-.sidebar {
-  background-color: $white;
-  box-shadow: 0 1px 1px 0px $lightGray;
-  @include rounded-top;
-  h1 {  
-    @include rounded-top(0.2em);
-    color: $lightLightGreen;
-    background-color: $lightRed;
-    font-size: 2em;
-    padding-top: 8px;
-    width: 100%;
-    span {
-      font-size: 0.4em;
       a {
         text-decoration: none;
         color: $darkGray;
       }
-    }
-    img {
-      @include rounded(0.2em);
-    }
-  }
-  h2 {
-    font-size: 1.5em;
-    span {
-      font-size: 0.8em;
-    }
-      span + span {
-      font-size: 0.4em;
-      a {
-        text-decoration: none;
-        color: $darkGray;
+      li {
+        font-size: 0.8em;
+        padding: 10px 5px 10px 1px;
+        border-bottom: 1px solid $lightGray;
+        &:last-child {
+          border-bottom: none;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        span {
+          float: right;
+          font-size: 0.5em;
+          margin-top: 1em;
+        }
       }
     }  
+    p {
+      width: 75%;
+      margin: 0 auto;
+      font-size: 2em;
+    }
+    .giftee-span {
+      font-size: 0.8em;
+      float: none;
+    }
   }
-  h3 {
-    font-size: 2em;
+
+  .sidebar > * {}
+  .sidebar {
+    background-color: $white;
+    box-shadow: 0 1px 1px 0px $lightGray;
+    @include rounded-top;
+    h1 {  
+      @include rounded-top(0.2em);
+      color: $lightLightGreen;
+      background-color: $lightRed;
+      font-size: 2em;
+      padding-top: 8px;
+      width: 100%;
       span {
-      font-size: 1em;
+        font-size: 0.4em;
+        a {
+          text-decoration: none;
+          color: $darkGray;
+        }
+      }
+      img {
+        @include rounded(0.2em);
+      }
+    }
+    h2 {
+      font-size: 1.5em;
+      span {
+        font-size: 0.8em;
+      }
+        span + span {
+        font-size: 0.4em;
+        a {
+          text-decoration: none;
+          color: $darkGray;
+        }
+      }  
+    }
+    h3 {
+      font-size: 2em;
+        span {
+        font-size: 1em;
+        a {
+          text-decoration: none;
+          color: $darkGray;
+        }
+      }
+    }  
+    ul {
+      font-size: 1.5em;
+      list-style: none;
+      margin: 0 auto;
+      width: 90%;
+      img {
+        @include rounded(0.2em);
+      }
+      h2 {
+        display: inline-block;
+        padding: 0;
+      }
       a {
         text-decoration: none;
         color: $darkGray;
+      }    
+      li {
+        font-size: 1em;
+        padding: 5px 5px 5px 1px;
+        border-bottom: 1px solid $lightGray;
+        &:last-child {
+          border-bottom: none;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        span {
+          float: right;
+          font-size: 0.5em;
+          margin-top: 1em;
+        }
       }
+    }  
+    p {
+      width: 75%;
+      margin: 0 auto;
+      font-size: 2em;
     }
-  }  
-  ul {
-    font-size: 1.5em;
-    list-style: none;
-    margin: 0 auto;
-    width: 90%;
-    img {
-      @include rounded(0.2em);
-    }
-    h2 {
-      display: inline-block;
-      padding: 0;
-    }
-    a {
-      text-decoration: none;
-      color: $darkGray;
-    }    
-    li {
-      font-size: 1em;
-      padding: 5px 5px 5px 1px;
-      border-bottom: 1px solid $lightGray;
-      &:last-child {
-        border-bottom: none;
-      }
-      h2 {
-        font-size: 1.5em;
-      }
-      span {
-        float: right;
-        font-size: 0.5em;
-        margin-top: 1em;
-      }
-    }
-  }  
-  p {
-    width: 75%;
+    .giftee-span {
+      font-size: 0.8em;
+      float: none;
+    }  
+  }
+
+  //forms
+  .form {
+    width: 50%;
     margin: 0 auto;
     font-size: 2em;
+    background-color: $white;
+    margin-top: 25px;
+    @include rounded;
+    box-shadow: 0 1px 1px 0px $lightGray;
+    h1 {
+      color: $lightLightGray;
+      background-color: $lightGreen;
+      @include rounded-top;
+      padding: 10px 0 10px 22%;
+      width: 100%;
+    }
+    .fields {
+      width: 60%;
+      margin-left: 20%;
+      label {
+        display: block;
+      }
+      input {
+        margin: 0 0 10px 0;
+        padding: 5px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+      }
+    }
+    .submit {
+      padding-bottom: 10px;
+      input {
+        font-size: 1em;
+        color: #fff;
+        padding: 5px 10px;
+        @include buttonBackground;
+        @include rounded;
+      }
+    }
   }
-  .giftee-span {
-    font-size: 0.8em;
-    float: none;
-  }  
-}
-
-//forms
-.form {
-  width: 50%;
-  margin: 0 auto;
-  font-size: 2em;
-  background-color: $white;
-  margin-top: 25px;
-  @include rounded;
-  box-shadow: 0 1px 1px 0px $lightGray;
-  h1 {
-    color: $lightLightGray;
-    background-color: $lightGreen;
-    @include rounded-top;
-    padding: 10px 0 10px 22%;
-    width: 100%;
+  .sidebar-form {
+    margin: 0 auto;
+    font-size: 1.5em;
+    line-height: 1em;
+    background-color: $white;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%; 
+      }
+      input {
+        float: left;
+        width: 70%;
+        margin-bottom: 5px;
+        padding: 2px 0 2px 3px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+        height: 100%
+      }
+      input[type="date"] {
+        height: 1.3em;
+      }
+    }
+    .submit {
+      display: inline-block;
+      margin: 1px 0 0 5px;
+      width: 25%;
+      input {
+        width: 100%;
+        font-size: 0.7em;
+        color: $white;
+        padding: 5px 10px;
+        @include buttonBackground($lightRed, $darkRed);
+        @include rounded;
+      }
+    }
+    a {
+      margin: 0 0 20px 10px;
+    }
   }
-  .fields {
-    width: 60%;
+  .invite-form {
+    width: 75%;
+    margin: 0 auto;
+    font-size: 1.5em;
+    line-height: 1em;
+    background-color: $white;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%; 
+      }
+      input {
+        float: left;
+        width: 70%;
+        margin-bottom: 5px;
+        padding: 2px 0 2px 3px;
+        @include rounded(0.1em);
+        background-color: $lightLightGray;
+        border: none;
+        height: 100%
+      }
+      input[type="date"] {
+        height: 1.3em;
+      }
+    }
+    .submit {
+      display: inline-block;
+      margin: 1px 0 0 5px;
+      width: 25%;
+      input {
+        width: 100%;
+        font-size: 0.7em;
+        color: #fff;
+        padding: 5px 10px;
+        @include buttonBackground;
+        @include rounded;
+      }
+    }
+    a {
+      margin: 0 0 20px 10px;
+    }
+  }
+  .invite-accept-form {
     margin-left: 20%;
-    label {
-      display: block;
+    font-size: 1.8em;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%;
+      }
     }
-    input {
-      margin: 0 0 10px 0;
-      padding: 5px;
-      @include rounded(0.1em);
-      background-color: $lightLightGray;
-      border: none;
-    }
-  }
-  .submit {
-    padding-bottom: 10px;
-    input {
-      font-size: 1em;
-      color: #fff;
-      padding: 5px 10px;
-      @include buttonBackground;
-      @include rounded;
-    }
-  }
-}
-.sidebar-form {
-  margin: 0 auto;
-  font-size: 1.5em;
-  line-height: 1em;
-  background-color: $white;
-  .fields {
-    label {
+    .submit {
       display: inline-block;
-      width: 100%; 
-    }
-    input {
-      float: left;
-      width: 70%;
-      margin-bottom: 5px;
-      padding: 2px 0 2px 3px;
-      @include rounded(0.1em);
-      background-color: $lightLightGray;
-      border: none;
-      height: 100%
-    }
-    input[type="date"] {
-      height: 1.3em;
+      input {
+        font-size: 0.6em;
+        color: #fff;
+        @include buttonBackground;
+        @include rounded;
+      }
     }
   }
-  .submit {
-    display: inline-block;
-    margin: 1px 0 0 5px;
-    width: 25%;
-    input {
-      width: 100%;
-      font-size: 0.7em;
-      color: $white;
-      padding: 5px 10px;
-      @include buttonBackground($lightRed, $darkRed);
-      @include rounded;
+  .users-accept-form {
+    margin-left: 12.5%;
+    font-size: 1.5em;
+    .fields {
+      label {
+        display: inline-block;
+        width: 100%;
+      }
     }
-  }
-  a {
-    margin: 0 0 20px 10px;
-  }
-}
-.invite-form {
-  width: 75%;
-  margin: 0 auto;
-  font-size: 1.5em;
-  line-height: 1em;
-  background-color: $white;
-  .fields {
-    label {
+    .submit {
       display: inline-block;
-      width: 100%; 
-    }
-    input {
-      float: left;
-      width: 70%;
-      margin-bottom: 5px;
-      padding: 2px 0 2px 3px;
-      @include rounded(0.1em);
-      background-color: $lightLightGray;
-      border: none;
-      height: 100%
-    }
-    input[type="date"] {
-      height: 1.3em;
+      input {
+        font-size: 0.6em;
+        color: $white;
+        @include buttonBackground;
+        @include rounded;
+      }
     }
   }
-  .submit {
-    display: inline-block;
-    margin: 1px 0 0 5px;
-    width: 25%;
-    input {
-      width: 100%;
-      font-size: 0.7em;
-      color: #fff;
-      padding: 5px 10px;
-      @include buttonBackground;
-      @include rounded;
-    }
-  }
-  a {
-    margin: 0 0 20px 10px;
-  }
-}
-.invite-accept-form {
-  margin-left: 20%;
-  font-size: 1.8em;
-  .fields {
-    label {
+
+  // misc
+  #alert, #notice {
+    font-size: 2em;
+    width: 100%;
+    margin: 0 auto;
+    background-color: $lightLightGray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    @include rounded;
+    p {
       display: inline-block;
-      width: 100%;
+      margin: 5px;
+      width: 90%;
     }
   }
-  .submit {
-    display: inline-block;
-    input {
-      font-size: 0.6em;
-      color: #fff;
-      @include buttonBackground;
-      @include rounded;
-    }
-  }
-}
-.users-accept-form {
-  margin-left: 12.5%;
-  font-size: 1.5em;
-  .fields {
-    label {
-      display: inline-block;
-      width: 100%;
-    }
-  }
-  .submit {
-    display: inline-block;
-    input {
-      font-size: 0.6em;
-      color: $white;
-      @include buttonBackground;
-      @include rounded;
-    }
-  }
-}
 
-// misc
-#alert, #notice {
-  font-size: 2em;
-  width: 100%;
-  margin: 0 auto;
-  background-color: $lightLightGray;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 5px;
-  @include rounded;
-  p {
-    display: inline-block;
-    margin: 5px;
-    width: 90%;
+  #notice {
+    color: $darkGreen;
+    border: 1px solid $darkGreen;
   }
-}
-
-#notice {
-  color: $darkGreen;
-  border: 1px solid $darkGreen;
-}
-#alert {
-  color: $darkRed;
-  border: 1px solid $darkRed;
-}
-
-.large-btn {
-  font-size: 1em;
-  color: #fff;
-  padding: 5px 10px;
-  @include buttonBackground;
-  @include rounded;
-}
-
-.close {
-  margin: 3px 5px 0 0;
-  font-size: 0.5em;
-  float: right;
-  color: $darkGray;
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  @include rounded(50%);
-  padding-left: 3.5px;
-  line-height: 12px;
-  &:hover {
-    color: $white;
-    background-color: $lightRed;
+  #alert {
+    color: $darkRed;
     border: 1px solid $darkRed;
   }
-} 
+
+  .large-btn {
+    font-size: 1em;
+    color: #fff;
+    padding: 5px 10px;
+    @include buttonBackground;
+    @include rounded;
+  }
+
+  .close {
+    margin: 3px 5px 0 0;
+    font-size: 0.5em;
+    float: right;
+    color: $darkGray;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    @include rounded(50%);
+    padding-left: 3.5px;
+    line-height: 12px;
+    &:hover {
+      color: $white;
+      background-color: $lightRed;
+      border: 1px solid $darkRed;
+    }
+  } 
+}
 
 // phones 
 @media only screen and (min-width: 100px) and (max-device-width: 700px) {
@@ -758,7 +764,7 @@ header {
   }
   
   .maximize { 
-    margin: -0.45em 0.1em 0 0;
+    margin: -0.4em 0.2em 0 0;
   }
 
   .minimize { 
