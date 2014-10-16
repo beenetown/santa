@@ -64,656 +64,632 @@ html {
   background-color: $offWhite;
 }
 
-// phones 
-@media only screen and (min-width: 100px) and (max-device-width: 700px) {
-  // html {zoom: 350%; font-size: 2em;}
-  header {
-    width: 100%;
-    height: 60px;
-    background-color: $white;
-    box-shadow: 0px 2px 3px 0px $darkGreen;
-    position: fixed;
-    top: 0;
-  }
+header {
+  width: 100%;
+  height: 60px;
+  background-color: $white;
+  box-shadow: 0px 2px 3px 0px $darkGreen;
+  position: fixed;
+  top: 0;
+}
 
-  .header {
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    #logo {
-      // background-image: url(image-path('logos/santa_logo_144.png'));
-      // background-repeat: no-repeat;
-      display: inline-block;
-      font-size: 4em;
+.header {
+  height: 100%;
+  margin: 0 auto;
+} 
+
+#show-nav {
+  float: right;
+  cursor: pointer;
+  display: inline-block;
+  width: 32px;
+  margin-top: 15px;
+  img {
+    width: 100%;
+  }
+}
+
+#nav {
+  right: 7.5%;
+  position: absolute;
+  top: 75px;
+  display: none;
+  color: $darkGray;
+  box-shadow: 0 1px 1px 0px $lightGray;
+  width: 40%;
+  background-color: $white;
+  z-index: 99;
+  
+  span {
+    float:right;
+    color: $lightGray;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  ul {
+    list-style: none;
+    padding: 20px 0 5px 0;
+    font-size: 2em;
+    margin: 0 25px 0 25px;
+
+    li {
+      &:first-child {
+      font-weight: bold;
+      }
+      a {
+        color: $darkGray;
+        text-decoration: none;
+      }
+    }
+    .divider {
+      border-bottom: 1px solid
+    }
+  }
+}
+
+#nav:after, #nav:before {
+  bottom: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+#nav:after {
+  border-color: rgba(0, 0, 0, 0);
+  border-bottom-color: $white;
+  border-width: 10px;
+  margin-left: -10px;
+}
+#nav:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-bottom-color: $lightLightGray;
+  border-width: 11px;
+  margin-left: -11px;
+}
+
+#show-signin {cursor: pointer;}
+#signin {
+  display:none;
+  font-size: 1em;
+  background-color: $white;
+  .fields {
+    input {
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 2px 0 2px 3px;
+      @include rounded(0.1em);
+      background-color: $lightLightGray;
+      border: none;
+    }
+  }
+  .submit {
+    width: 50%;
+    input {
+      font-size: 0.7em;
+      color: $white;
+      padding: 5px;
+      @include buttonBackground;
+      @include rounded;
+    }
+  }
+  a {
+    margin: 0 0 20px 10px;
+  }
+}
+
+// // content
+.container {
+  margin: 0 auto;
+  margin-top: 80px;
+  z-index: -2;
+  // height: 100%;
+}
+.hero {
+  background-color: $darkGray;
+  font-size: 2em;
+  width: 60%;
+  height: 400px;
+  padding-top: 2em;
+  margin: auto;
+  color: white;
+  text-align: center;
+  h1, h2, h3 {
+    span {
+      font-size: 0.4em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;  
+  }
+  h3 {
+    font-size: 1em;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    a {
       text-decoration: none;
       color: $darkGray;
-      // width: 10%;
-      // height: 100%;
-      width: 144px;
-      height: 100px;
-      line-height: 0.8em;
     }
-    img {margin-top: 5px;}
   }
-
-  #show-nav {
-    float: right;
-    // background-color: lighten($lightGreen, 20%);
-    // margin-top: 50%;
-    // padding: 5px 11px 0px 10px;
-    cursor: pointer;
-    display: inline-block;
-    width: 32px;
-    margin-top: 15px;
+  p {
+    margin-top: 5px;
+    a {
+      color: white;
+    }
+  }
+}
+.content {
+  min-height: 100%;
+  background-color: white;
+  box-shadow: 0 1px 1px 0px $lightGray;
+  @include rounded-top;
+  h1, h2, h3 {
+    padding: 0 12.5% 0 12.5%;
+  }
+  h1 {
+    @include rounded-top(0.2em);
+    color: $lightLightGreen;
+    background-color: $lightGreen;
+    font-size: 2em;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    width: 100%;
+    span {
+      font-size: 0.4em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }
     img {
+      @include rounded(0.2em);
+    }
+  }
+  h2 {
+    font-size: 1.5em;
+    span {
+      font-size: 0.8em;
+    }
+    span + span {
+      font-size: 0.4em;
+    a {
+      text-decoration: none;
+      color: $darkGray;
+    }  
+  }
+  h3 {
+    font-size: 2em;
+      span {
+        font-size: 1em;
+        a {
+          text-decoration: none;
+          color: $darkGray;
+        }
+      }
+    }
+  }
+  ul {
+    font-size: 2em;
+    list-style: none;
+    margin: 0 auto;
+    width: 75%;
+    img {
+      @include rounded(0.2em);
+    }
+    h2 {
+      display: inline-block;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      color: $darkGray;
+    }
+    li {
+      font-size: 0.8em;
+      padding: 10px 5px 10px 1px;
+      border-bottom: 1px solid $lightGray;
+      &:last-child {
+        border-bottom: none;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      span {
+        float: right;
+        font-size: 0.5em;
+        margin-top: 1em;
+      }
+    }
+  }  
+  p {
+    width: 75%;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+  .giftee-span {
+    font-size: 0.8em;
+    float: none;
+  }
+}
+
+.sidebar > * {}
+.sidebar {
+  background-color: $white;
+  box-shadow: 0 1px 1px 0px $lightGray;
+  @include rounded-top;
+  h1 {  
+    @include rounded-top(0.2em);
+    color: $lightLightGreen;
+    background-color: $lightRed;
+    font-size: 2em;
+    padding-top: 8px;
+    width: 100%;
+    span {
+      font-size: 0.4em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }
+    img {
+      @include rounded(0.2em);
+    }
+  }
+  h2 {
+    font-size: 1.5em;
+    span {
+      font-size: 0.8em;
+    }
+      span + span {
+      font-size: 0.4em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }  
+  }
+  h3 {
+    font-size: 2em;
+      span {
+      font-size: 1em;
+      a {
+        text-decoration: none;
+        color: $darkGray;
+      }
+    }
+  }  
+  ul {
+    font-size: 1.5em;
+    list-style: none;
+    margin: 0 auto;
+    width: 90%;
+    img {
+      @include rounded(0.2em);
+    }
+    h2 {
+      display: inline-block;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      color: $darkGray;
+    }    
+    li {
+      font-size: 1em;
+      padding: 5px 5px 5px 1px;
+      border-bottom: 1px solid $lightGray;
+      &:last-child {
+        border-bottom: none;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      span {
+        float: right;
+        font-size: 0.5em;
+        margin-top: 1em;
+      }
+    }
+  }  
+  p {
+    width: 75%;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+  .giftee-span {
+    font-size: 0.8em;
+    float: none;
+  }  
+}
+
+//forms
+.form {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 2em;
+  background-color: $white;
+  margin-top: 25px;
+  @include rounded;
+  box-shadow: 0 1px 1px 0px $lightGray;
+  h1 {
+    color: $lightLightGray;
+    background-color: $lightGreen;
+    @include rounded-top;
+    padding: 10px 0 10px 22%;
+    width: 100%;
+  }
+  .fields {
+    width: 60%;
+    margin-left: 20%;
+    label {
+      display: block;
+    }
+    input {
+      margin: 0 0 10px 0;
+      padding: 5px;
+      @include rounded(0.1em);
+      background-color: $lightLightGray;
+      border: none;
+    }
+  }
+  .submit {
+    padding-bottom: 10px;
+    input {
+      font-size: 1em;
+      color: #fff;
+      padding: 5px 10px;
+      @include buttonBackground;
+      @include rounded;
+    }
+  }
+}
+.sidebar-form {
+  margin: 0 auto;
+  font-size: 1.5em;
+  line-height: 1em;
+  background-color: $white;
+  .fields {
+    label {
+      display: inline-block;
+      width: 100%; 
+    }
+    input {
+      float: left;
+      width: 70%;
+      margin-bottom: 5px;
+      padding: 2px 0 2px 3px;
+      @include rounded(0.1em);
+      background-color: $lightLightGray;
+      border: none;
+      height: 100%
+    }
+    input[type="date"] {
+      height: 1.3em;
+    }
+  }
+  .submit {
+    display: inline-block;
+    margin: 1px 0 0 5px;
+    width: 25%;
+    input {
+      width: 100%;
+      font-size: 0.7em;
+      color: $white;
+      padding: 5px 10px;
+      @include buttonBackground($lightRed, $darkRed);
+      @include rounded;
+    }
+  }
+  a {
+    margin: 0 0 20px 10px;
+  }
+}
+.invite-form {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 1.5em;
+  line-height: 1em;
+  background-color: $white;
+  .fields {
+    label {
+      display: inline-block;
+      width: 100%; 
+    }
+    input {
+      float: left;
+      width: 70%;
+      margin-bottom: 5px;
+      padding: 2px 0 2px 3px;
+      @include rounded(0.1em);
+      background-color: $lightLightGray;
+      border: none;
+      height: 100%
+    }
+    input[type="date"] {
+      height: 1.3em;
+    }
+  }
+  .submit {
+    display: inline-block;
+    margin: 1px 0 0 5px;
+    width: 25%;
+    input {
+      width: 100%;
+      font-size: 0.7em;
+      color: #fff;
+      padding: 5px 10px;
+      @include buttonBackground;
+      @include rounded;
+    }
+  }
+  a {
+    margin: 0 0 20px 10px;
+  }
+}
+.invite-accept-form {
+  margin-left: 20%;
+  font-size: 1.8em;
+  .fields {
+    label {
+      display: inline-block;
       width: 100%;
     }
   }
-
-  #nav {
-    position: absolute;
-    right: 7.5%;
-    top: 75px;
-    display: none;
-    color: $darkGray;
-    box-shadow: 0 0px 4px $lightLightGray;
-    width: 40%;
-    background-color: $white;
-    z-index: 99;
-    span {
-      float:right;
-      color: $lightGray;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 1.2em;
-    }
-    ul {
-      // width: 100%;
-      // float: right;
-      // display: inline;
-      list-style: none;
-      padding: 20px 0 5px 0;
-      font-size: 2em;
-      margin: 0 25px 0 25px;
-
-      li {
-        // margin-left: 10px;
-        &:first-child {
-        font-weight: bold;
-        }
-        // display: inline;
-        a {
-          color: $darkGray;
-          text-decoration: none;
-        }
-      }
-      .divider {
-        border-bottom: 1px solid
-      }
+  .submit {
+    display: inline-block;
+    input {
+      font-size: 0.6em;
+      color: #fff;
+      @include buttonBackground;
+      @include rounded;
     }
   }
+}
+.users-accept-form {
+  margin-left: 12.5%;
+  font-size: 1.5em;
+  .fields {
+    label {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  .submit {
+    display: inline-block;
+    input {
+      font-size: 0.6em;
+      color: $white;
+      @include buttonBackground;
+      @include rounded;
+    }
+  }
+}
 
+// misc
+#alert, #notice {
+  font-size: 2em;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $lightLightGray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  @include rounded;
+  p {
+    display: inline-block;
+    margin: 5px;
+    width: 90%;
+  }
+}
+
+#notice {
+  color: $darkGreen;
+  border: 1px solid $darkGreen;
+}
+#alert {
+  color: $darkRed;
+  border: 1px solid $darkRed;
+}
+
+.large-btn {
+  font-size: 1em;
+  color: #fff;
+  padding: 5px 10px;
+  @include buttonBackground;
+  @include rounded;
+}
+
+.close {
+  margin: 3px 5px 0 0;
+  font-size: 0.5em;
+  float: right;
+  color: $darkGray;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  @include rounded(50%);
+  padding-left: 3.5px;
+  line-height: 12px;
+  &:hover {
+    color: $white;
+    background-color: $lightRed;
+    border: 1px solid $darkRed;
+  }
+} 
+
+// phones 
+@media only screen and (min-width: 100px) and (max-device-width: 700px) {
+  header {height: 12%;}
+  .header {
+    width: 90%;
+    #logo-img {
+      width: 20%; 
+      height: 90%;
+      margin-top: 1%;
+    }
+  } 
+  #show-nav {
+    width: 10em;
+    margin-top: 2em;
+  }
+  #nav {
+    right: 5%;
+    top: 125%;
+    width: 75%;
+    font-size: 3em;
+  }
   #nav:after, #nav:before {
-    bottom: 100%;
-    right: 15%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
+    right: 5%;
   }
 
   #nav:after {
-    border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: $white;
-    border-width: 10px;
-    margin-left: -10px;
+    border-width: 30px;
+    margin-left: -30px;
   }
   #nav:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-bottom-color: $lightLightGray;
-    border-width: 11px;
-    margin-left: -11px;
-  }
-
-  #show-signin {cursor: pointer;}
-  #signin {
-    display:none;
-    font-size: 1em;
-    background-color: $white;
-
-    .fields {
-      input {
-        width: 100%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      width: 50%;
-      input {
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-    a {
-      margin: 0 0 20px 10px;
-    }
+    border-width: 32px;
+    margin-left: -32px;
   }
 
   // content
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 80px;
-    z-index: -2;
-    height: 100%;
-  }
-  .sidebar > * {display:none;}
-  .sidebar {
-    // width: 39%;
-    // float: right;
-    // right: 5%;
-    // position: fixed;
-    // z-index: -1;
-    // min-height: 100%;
-    // margin: auto;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    background-color: white;
-    @include rounded-top;
-
-    h1, h2, h3 {
-      padding: 0 5% 5px 12.5%;
-    }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightRed;
-      font-size: 2em;
-      padding-top: 8px;
-      width: 100%;
-      display: inline-block;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 1.5em;
-      list-style: none;
-      margin: 0 auto;
-      width: 90%;
-      // margin-left: 12%;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 1em;
-        padding: 5px 5px 5px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
-
+  .hero {
+    width: 100%;
+    padding-bottom: 70%;
+    font-size: 5em;
+    margin-top: 25%;
   }
   .content {
-    // width: 60%;
-    min-height: 100%;
-    background-color: white;
-    @include rounded-top;
-    h1, h2, h3 {
-      padding: 0 12.5% 0 12.5%;
-    }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightGreen;
-      font-size: 2em;
-      padding-top: 8px;
-      padding-bottom: 5px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 2em;
-      list-style: none;
-      margin: 0 auto;
-      width: 75%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 0.8em;
-        padding: 10px 5px 10px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
+    font-size: 2.6em;
+    margin-top: 25%;
+  }
 
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
+  .container { width: 90%; }
+  .sidebar > * { display:none; }
+  .sidebar {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    h1, h2, h3 { padding: 0 5% 5px 12.5%; }
+    h1 { display: inline-block; } 
   }
 
   .sidebar-form {
     width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground($lightRed, $darkRed);
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .invite-form {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .users-accept-form {
-    margin-left: 12.5%;
-    font-size: 1.5em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-
-  .hero {
-    // background: url(image-path('backgrounds/snowy_light.png')) no-repeat center center fixed;
-    background-color: $darkGray;  
-    font-size: 2em;
-    width: 60%;
-    height: 400px;
-    padding-top: 2em;
-    margin: auto;
-    // margin-top: 10px;
-    color: white;
-    text-align: center;
-    h1 {
-      font-size: 2em;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 1em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
-    p {
-      margin-top: 5px;
-      a{
-        // text-decoration: none;
-        color: white;
-      }
-    }
-  }
-
-  .form {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 2em;
-    background-color: $white;
-    margin-top: 25px;
-    @include rounded;
-    h1 {
-      color: $lightLightGray;
-      background-color: $lightGreen;
-      @include rounded-top;
-      padding: 10px 0 10px 22%;
-      width: 100%;
-    }
-    .fields {
-      width: 60%;
-      margin-left: 20%;
-      // padding: 10px;
-      label {
-        display: block;
-      }
-      input {
-        margin: 0 0 10px 0;
-        padding: 5px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      padding-bottom: 10px;
-      input {
-        font-size: 1em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
   }
 
   // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 100%;
-    margin: 0 auto;
-    background-color: $lightLightGray;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    @include rounded;
-    p {
-      display: inline-block;
-      margin: 5px;
-      width: 90%;
-    }
-  }
-
-  #notice {
-    color: $darkGreen;
-    border: 1px solid $darkGreen;
-  }
-  #alert {
-    color: $darkRed;
-    border: 1px solid $darkRed;
-  }
-
-
-  .large-btn {
-    font-size: 1em;
-    color: #fff;
-    padding: 5px 10px;
-    @include buttonBackground;
-    @include rounded;
-  }
-
-  .invite-accept-form {
-    margin-left: 20%;
-    font-size: 1.8em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-  
-  .close {
-    margin: 3px 5px 0 0;
-    font-size: 0.5em;
-    float: right;
-    color: $darkGray;
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    @include rounded(50%);
-    padding-left: 3.5px;
-    line-height: 12px;
-    &:hover {
-      color: $white;
-      background-color: $lightRed;
-      border: 1px solid $darkRed;
-    }
-  } 
-
-  .minimize, .maximize { 
+   .minimize, .maximize { 
     float: right; 
     font-size: 1em !important;
     cursor: pointer;
@@ -739,658 +715,42 @@ html {
       padding-left: 12.5%; 
     }
   }
-
 }
 
 // small screens
 @media only screen and (min-device-width: 700px) and (max-width: 50.699em) {
-
-  header {
-    width: 100%;
-    height: 60px;
-    background-color: $white;
-    box-shadow: 0px 2px 3px 0px $darkGreen;
-    position: fixed;
-    top: 0;
-  }
-
   .header {
     width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    #logo {
-      // background-image: url(image-path('logos/santa_logo_144.png'));
-      // background-repeat: no-repeat;
-      display: inline-block;
-      font-size: 4em;
-      text-decoration: none;
-      color: $darkGray;
-      // width: 10%;
-      // height: 100%;
-      width: 144px;
-      height: 100px;
-      line-height: 0.8em;
-    }
-    img {margin-top: 5px;}
   }
 
-  #show-nav {
-    float: right;
-    // background-color: lighten($lightGreen, 20%);
-    // margin-top: 50%;
-    // padding: 5px 11px 0px 10px;
-    cursor: pointer;
-    display: inline-block;
-    width: 32px;
-    margin-top: 15px;
-    img {
-      width: 100%;
-    }
-  }
-
-  #nav {
-    position: absolute;
-    right: 7.5%;
-    top: 75px;
-    display: none;
-    color: $darkGray;
-    box-shadow: 0 0px 4px $lightLightGray;
-    width: 40%;
-    background-color: $white;
-    z-index: 99;
-    span {
-      float:right;
-      color: $lightGray;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 1.2em;
-    }
-    ul {
-      // width: 100%;
-      // float: right;
-      // display: inline;
-      list-style: none;
-      padding: 20px 0 5px 0;
-      font-size: 2em;
-      margin: 0 25px 0 25px;
-
-      li {
-        // margin-left: 10px;
-        &:first-child {
-        font-weight: bold;
-        }
-        // display: inline;
-        a {
-          color: $darkGray;
-          text-decoration: none;
-        }
-      }
-      .divider {
-        border-bottom: 1px solid
-      }
-    }
-  }
-
-  // #nav:after, #nav:before {
-  //   bottom: 100%;
-  //   right: 15%;
-  //   border: solid transparent;
-  //   content: " ";
-  //   height: 0;
-  //   width: 0;
-  //   position: absolute;
-  //   pointer-events: none;
-  // }
-
-  // #nav:after {
-  //   border-color: rgba(0, 0, 0, 0);
-  //   border-bottom-color: $white;
-  //   border-width: 10px;
-  //   margin-left: -10px;
-  // }
-  // #nav:before {
-  //   border-color: rgba(194, 225, 245, 0);
-  //   border-bottom-color: $lightLightGray;
-  //   border-width: 11px;
-  //   margin-left: -11px;
-  // }
-
-  #show-signin {cursor: pointer;}
-  #signin {
-    display:none;
-    font-size: 1em;
-    background-color: $white;
-
-    .fields {
-      input {
-        width: 100%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      width: 50%;
-      input {
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
+  #nav { right: 4%; }
+  #nav:after, #nav:before { right: 5%; }
 
   // content
   .container {
     width: 90%;
-    margin: 0 auto;
-    margin-top: 80px;
-    z-index: -2;
-    height: 100%;
   }
+  
   .sidebar > * {display:none;}
   .sidebar {
-    // width: 39%;
-    // float: right;
-    // right: 5%;
-    // position: fixed;
-    // z-index: -1;
-    // min-height: 100%;
-    // margin: auto;
     margin-bottom: 10px;
     padding-bottom: 5px;
-    background-color: white;
-    @include rounded-top;
-
     h1, h2, h3 {
       padding: 0 5% 5px 12.5%;
     }
     h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightRed;
-      font-size: 2em;
-      padding-top: 8px;
-      width: 100%;
       display: inline-block;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
+      } 
     ul {
-      font-size: 1.5em;
-      list-style: none;
-      margin: 0 auto;
-      width: 90%;
       margin-left: 12.5%;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 1em;
-        padding: 5px 5px 5px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
-
-  }
-  .content {
-    // width: 60%;
-    min-height: 100%;
-    background-color: white;
-    @include rounded-top;
-    h1, h2, h3 {
-      padding: 0 12.5% 0 12.5%;
-    }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightGreen;
-      font-size: 2em;
-      padding-top: 8px;
-      padding-bottom: 5px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 2em;
-      list-style: none;
-      margin: 0 auto;
-      width: 75%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 0.8em;
-        padding: 10px 5px 10px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
-  }
-
-  .sidebar-form {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground($lightRed, $darkRed);
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .invite-form {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .users-accept-form {
-    margin-left: 12.5%;
-    font-size: 1.5em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-
-  .hero {
-    // background: url(image-path('backgrounds/snowy_light.png')) no-repeat center center fixed;
-    background-color: $darkGray;  
-    font-size: 2em;
-    width: 60%;
-    height: 400px;
-    padding-top: 2em;
-    margin: auto;
-    // margin-top: 10px;
-    color: white;
-    text-align: center;
-    h1 {
-      font-size: 2em;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 1em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
-    p {
-      margin-top: 5px;
-      a{
-        // text-decoration: none;
-        color: white;
-      }
-    }
-  }
-
-  .form {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 2em;
-    background-color: $white;
-    margin-top: 25px;
-    @include rounded;
-    h1 {
-      color: $lightLightGray;
-      background-color: $lightGreen;
-      @include rounded-top;
-      padding: 10px 0 10px 22%;
-      width: 100%;
-    }
-    .fields {
-      width: 60%;
-      margin-left: 20%;
-      // padding: 10px;
-      label {
-        display: block;
-      }
-      input {
-        margin: 0 0 10px 0;
-        padding: 5px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      padding-bottom: 10px;
-      input {
-        font-size: 1em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-
-  // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 100%;
-    margin: 0 auto;
-    background-color: $lightLightGray;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    @include rounded;
-    p {
-      display: inline-block;
-      margin: 5px;
-      width: 90%;
-    }
-  }
-
-  #notice {
-    color: $darkGreen;
-    border: 1px solid $darkGreen;
-  }
-  #alert {
-    color: $darkRed;
-    border: 1px solid $darkRed;
-  }
-
-
-  .large-btn {
-    font-size: 1em;
-    color: #fff;
-    padding: 5px 10px;
-    @include buttonBackground;
-    @include rounded;
-  }
-
-  .invite-accept-form {
-    margin-left: 20%;
-    font-size: 1.8em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
     }
   }
   
-  .close {
-    margin: 3px 5px 0 0;
-    font-size: 0.5em;
-    float: right;
-    color: $darkGray;
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    @include rounded(50%);
-    padding-left: 3.5px;
-    line-height: 12px;
-    &:hover {
-      color: $white;
-      background-color: $lightRed;
-      border: 1px solid $darkRed;
-    }
-  } 
+  .sidebar-form {
+    width: 75%;
+  }
 
+  // misc.
   .minimize, .maximize { 
     float: right; 
     font-size: 1em !important;
@@ -1398,12 +758,12 @@ html {
   }
   
   .maximize { 
-    margin: -0.5em 0.1em 0 0;
+    margin: -0.45em 0.1em 0 0;
   }
 
   .minimize { 
     display: none; 
-    margin: -0.7em -4.5% 0 0;
+    margin: -0.3em -4.5% 0 0;
   }
 
   .minimized { 
@@ -1421,1306 +781,70 @@ html {
 
 // medium screens
 @media only screen and (min-device-width: 700px) and (min-width: 50.7em) and (max-width: 59.999em) {
-
-  header {
-    width: 100%;
-    height: 60px;
-    background-color: $white;
-    box-shadow: 0px 2px 3px 0px $darkGreen;
-    position: fixed;
-    top: 0;
-  }
-
   .header {
     width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    #logo {
-      // background-image: url(image-path('logos/santa_logo_144.png'));
-      // background-repeat: no-repeat;
-      display: inline-block;
-      font-size: 4em;
-      text-decoration: none;
-      color: $darkGray;
-      // width: 10%;
-      // height: 100%;
-      width: 144px;
-      height: 100px;
-      line-height: 0.8em;
-    }
-    img {margin-top: 5px;}
   }
-
-  #show-nav {
-    float: right;
-    // background-color: lighten($lightGreen, 20%);
-    // margin-top: 50%;
-    // padding: 5px 11px 0px 10px;
-    cursor: pointer;
-    display: inline-block;
-    width: 32px;
-    margin-top: 15px;
-    img {
-      width: 100%;
-    }
-  }
-
   #nav {
-    position: absolute;
     right: 1%;
-    top: 75px;
-    display: none;
-    color: $darkGray;
-    box-shadow: 0 0px 4px $lightLightGray;
-    width: 20%;
-    background-color: $white;
-    z-index: 99;
-    span {
-      float:right;
-      color: $lightGray;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 1.2em;
-    }
-    ul {
-      // width: 100%;
-      // float: right;
-      // display: inline;
-      list-style: none;
-      padding: 20px 0 5px 0;
-      font-size: 2em;
-      margin: 0 25px 0 25px;
-
-      li {
-        // margin-left: 10px;
-        &:first-child {
-        font-weight: bold;
-        }
-        // display: inline;
-        a {
-          color: $darkGray;
-          text-decoration: none;
-        }
-      }
-      .divider {
-        border-bottom: 1px solid
-      }
-    }
   }
 
-  #nav:after, #nav:before {
-    bottom: 100%;
-    right: 5%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-  }
-
-  #nav:after {
-    border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: $white;
-    border-width: 10px;
-    margin-left: -10px;
-  }
-  #nav:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-bottom-color: $lightLightGray;
-    border-width: 11px;
-    margin-left: -11px;
-  }
-
-  #show-signin {cursor: pointer;}
-  #signin {
-    display:none;
-    font-size: 1em;
-    background-color: $white;
-
-    .fields {
-      input {
-        width: 100%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      width: 50%;
-      input {
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
+  #nav:after, #nav:before {right: 5%;}
 
   // content
   .container {
     width: 95%;
-    margin: 0 auto;
-    margin-top: 80px;
-    z-index: -2;
-    height: 100%;
   }
 
   .sidebar > * { display: block !important; }
-
   .sidebar {
     width: 39%;
     float: right;
-    // right: 5%;
-    // position: fixed;
-    // z-index: -1;
-    // min-height: 100%;
-    // margin: auto;
-    // margin-top: 20px;
     padding-bottom: 5px;
-    background-color: white;
-    @include rounded-top;
     h1, h2, h3 {
       padding: 0 5% 5px 5%;
     }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightRed;
-      font-size: 2em;
-      padding-top: 8px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 1.5em;
-      list-style: none;
-      margin: 0 auto;
-      width: 90%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 1em;
-        padding: 5px 5px 5px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
-
   }
-  .content {
-    width: 60%;
-    min-height: 100%;
-    background-color: white;
-    @include rounded-top;
-    h1, h2, h3 {
-      padding: 0 12.5% 0 12.5%;
-    }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightGreen;
-      font-size: 2em;
-      padding-top: 8px;
-      padding-bottom: 5px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 2em;
-      list-style: none;
-      margin: 0 auto;
-      width: 75%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 0.8em;
-        padding: 10px 5px 10px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
-  }
+  .content { width: 60%; }
 
   .sidebar-form {
     width: 90%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground($lightRed, $darkRed);
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .invite-form {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .users-accept-form {
-    margin-left: 12.5%;
-    font-size: 1.5em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-
-  .hero {
-    // background: url(image-path('backgrounds/snowy_light.png')) no-repeat center center fixed;
-    background-color: $darkGray;  
-    font-size: 2em;
-    width: 60%;
-    height: 400px;
-    padding-top: 2em;
-    margin: auto;
-    // margin-top: 10px;
-    color: white;
-    text-align: center;
-    h1 {
-      font-size: 2em;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 1em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
-    p {
-      margin-top: 5px;
-      a{
-        // text-decoration: none;
-        color: white;
-      }
-    }
-  }
-
-  .form {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 2em;
-    background-color: $white;
-    margin-top: 25px;
-    @include rounded;
-    h1 {
-      color: $lightLightGray;
-      background-color: $lightGreen;
-      @include rounded-top;
-      padding: 10px 0 10px 22%;
-      width: 100%;
-    }
-    .fields {
-      width: 60%;
-      margin-left: 20%;
-      // padding: 10px;
-      label {
-        display: block;
-      }
-      input {
-        margin: 0 0 10px 0;
-        padding: 5px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      padding-bottom: 10px;
-      input {
-        font-size: 1em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
   }
 
   // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 100%;
-    margin: 0 auto;
-    background-color: $lightLightGray;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    @include rounded;
-    p {
-      display: inline-block;
-      margin: 5px;
-      width: 90%;
-    }
-  }
-
-  #notice {
-    color: $darkGreen;
-    border: 1px solid $darkGreen;
-  }
-  #alert {
-    color: $darkRed;
-    border: 1px solid $darkRed;
-  }
-
-
-  .large-btn {
-    font-size: 1em;
-    color: #fff;
-    padding: 5px 10px;
-    @include buttonBackground;
-    @include rounded;
-  }
-
-  .invite-accept-form {
-    margin-left: 20%;
-    font-size: 1.8em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-  
-  .close {
-    margin: 3px 5px 0 0;
-    font-size: 0.5em;
-    float: right;
-    color: $darkGray;
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    @include rounded(50%);
-    padding-left: 3.5px;
-    line-height: 12px;
-    &:hover {
-      color: $white;
-      background-color: $lightRed;
-      border: 1px solid $darkRed;
-    }
-  } 
-
   .minimize, .maximize { display: none !important; }
 }
 
 // large screens
 @media only screen and (min-device-width: 700px) and (min-width: 60em) {
-
-  header {
-    width: 100%;
-    height: 60px;
-    background-color: $white;
-    box-shadow: 0px 2px 3px 0px $darkGreen;
-    position: fixed;
-    top: 0;
-  }
-
   .header {
     width: 80%;
-    height: 100%;
-    margin: 0 auto;
-    #logo {
-      // background-image: url(image-path('logos/santa_logo_144.png'));
-      // background-repeat: no-repeat;
-      display: inline-block;
-      font-size: 4em;
-      text-decoration: none;
-      color: $darkGray;
-      // width: 10%;
-      // height: 100%;
-      width: 144px;
-      height: 100px;
-      line-height: 0.8em;
-    }
-    img {margin-top: 5px;}
   }
-
-  #show-nav {
-    float: right;
-    // background-color: lighten($lightGreen, 20%);
-    // margin-top: 50%;
-    // padding: 5px 11px 0px 10px;
-    cursor: pointer;
-    display: inline-block;
-    width: 32px;
-    margin-top: 15px;
-    img {
-      width: 100%;
-    }
-  }
-
-  #nav {
-    position: absolute;
-    right: 7.5%;
-    top: 75px;
-    display: none;
-    color: $darkGray;
-    box-shadow: 0 0px 4px $lightLightGray;
-    width: 20%;
-    background-color: $white;
-    z-index: 99;
-    span {
-      float:right;
-      color: $lightGray;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 1.2em;
-    }
-    ul {
-      // width: 100%;
-      // float: right;
-      // display: inline;
-      list-style: none;
-      padding: 20px 0 5px 0;
-      font-size: 2em;
-      margin: 0 25px 0 25px;
-
-      li {
-        // margin-left: 10px;
-        &:first-child {
-        font-weight: bold;
-        }
-        // display: inline;
-        a {
-          color: $darkGray;
-          text-decoration: none;
-        }
-      }
-      .divider {
-        border-bottom: 1px solid
-      }
-    }
-  }
-
-  #nav:after, #nav:before {
-    bottom: 100%;
-    right: 15%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-  }
-
-  #nav:after {
-    border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: $white;
-    border-width: 10px;
-    margin-left: -10px;
-  }
-  #nav:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-bottom-color: $lightLightGray;
-    border-width: 11px;
-    margin-left: -11px;
-  }
-
-  #show-signin {cursor: pointer;}
-  #signin {
-    display:none;
-    font-size: 1em;
-    background-color: $white;
-
-    .fields {
-      input {
-        width: 100%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      width: 50%;
-      input {
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
+  #nav:after, #nav:before { right: 7%; }
 
   // content
   .container {
     width: 80%;
-    margin: 0 auto;
-    margin-top: 80px;
-    z-index: -2;
-    height: 100%;
-  }
+  }  
 
   .sidebar > * { display: block !important; }
   .sidebar {
     width: 39%;
     float: right;
-    // right: 5%;
-    // position: fixed;
-    // z-index: -1;
-    // min-height: 100%;
-    // margin: auto;
-    // margin-top: 20px;
     padding-bottom: 5px;
-    background-color: white;
-    @include rounded-top;
     h1, h2, h3 {
       padding: 0 5% 5px 5%;
     }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightRed;
-      font-size: 2em;
-      padding-top: 8px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-      span + span {
-      font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      #admin-link {
-        text-decoration: none;
-        color: $darkGray;    
-      }
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 1.5em;
-      list-style: none;
-      margin: 0 auto;
-      width: 90%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 1em;
-        padding: 5px 5px 5px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
   }
+
   .content {
     width: 60%;
-    min-height: 100%;
-    background-color: white;
-    @include rounded-top;
-    h1, h2, h3 {
-      padding: 0 12.5% 0 12.5%;
-    }
-    h1 {
-      @include rounded-top(0.2em);
-      color: $lightLightGreen;
-      background-color: $lightGreen;
-      font-size: 2em;
-      padding-top: 8px;
-      padding-bottom: 5px;
-      width: 100%;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-      img {
-        @include rounded(0.2em);
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-      span {
-        font-size: 0.8em;
-      }
-        span + span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 2em;
-        span {
-        font-size: 1em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      font-size: 2em;
-      list-style: none;
-      margin: 0 auto;
-      width: 75%;
-      // margin-top: 10px;
-      img {
-        @include rounded(0.2em);
-      }
-      h2 {
-        display: inline-block;
-        padding: 0;
-      }
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-      li {
-        font-size: 0.8em;
-        padding: 10px 5px 10px 1px;
-        border-bottom: 1px solid $lightGray;
-        &:last-child {
-          border-bottom: none;
-        }
-        h2 {
-          font-size: 1.5em;
-        }
-
-        span {
-          float: right;
-          font-size: 0.5em;
-          margin-top: 1em;
-        }
-      }
-    }
-    p {
-      width: 75%;
-      margin: 0 auto;
-      font-size: 2em;
-      margin-bottom: 1em;
-    }
-
-    .giftee-span {
-      font-size: 0.8em;
-      float: none;
-    }
+    p { margin-bottom: 1em; }
   }
 
   .sidebar-form {
     width: 90%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground($lightRed, $darkRed);
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .invite-form {
-    width: 75%;
-    margin: 0 auto;
-    font-size: 1.5em;
-    line-height: 1em;
-    background-color: $white;
-    // margin-top: 25px;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%; 
-      }
-      input {
-        float: left;
-        width: 70%;
-        margin-bottom: 5px;
-        padding: 2px 0 2px 3px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-        height: 100%
-      }
-      input[type="date"] {
-        // padding: 0;/
-        // display: inline-block;
-        height: 1.3em;
-
-      }
-    }
-    .submit {
-      display: inline-block;
-      // float: right;
-      margin: 1px 0 0 5px;
-      width: 25%;
-      // padding-bottom: 10px;
-      input {
-        width: 100%;
-        font-size: 0.7em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-
-    }
-
-    a {
-      margin: 0 0 20px 10px;
-    }
-  }
-
-  .users-accept-form {
-    margin-left: 12.5%;
-    font-size: 1.5em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-
-  .hero {
-    // background: url(image-path('backgrounds/snowy_light.png')) no-repeat center center fixed;
-    background-color: $darkGray;  
-    font-size: 2em;
-    width: 60%;
-    height: 400px;
-    padding-top: 2em;
-    margin: auto;
-    // margin-top: 10px;
-    color: white;
-    text-align: center;
-    h1 {
-      font-size: 2em;
-      span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    h2 {
-      font-size: 1.5em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }  
-    }
-    h3 {
-      font-size: 1em;
-        span {
-        font-size: 0.4em;
-        a {
-          text-decoration: none;
-          color: $darkGray;
-        }
-      }
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      a {
-        text-decoration: none;
-        color: $darkGray;
-      }
-    }
-    p {
-      margin-top: 5px;
-      a{
-        // text-decoration: none;
-        color: white;
-      }
-    }
-  }
-
-  .form {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 2em;
-    background-color: $white;
-    margin-top: 25px;
-    @include rounded;
-    h1 {
-      color: $lightLightGray;
-      background-color: $lightGreen;
-      @include rounded-top;
-      padding: 10px 0 10px 22%;
-      width: 100%;
-    }
-    .fields {
-      width: 60%;
-      margin-left: 20%;
-      // padding: 10px;
-      label {
-        display: block;
-      }
-      input {
-        margin: 0 0 10px 0;
-        padding: 5px;
-        @include rounded(0.1em);
-        background-color: $lightLightGray;
-        border: none;
-      }
-    }
-    .submit {
-      padding-bottom: 10px;
-      input {
-        font-size: 1em;
-        color: #fff;
-        padding: 5px 10px;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
   }
 
   // misc.
-  #alert, #notice {
-    font-size: 2em;
-    width: 100%;
-    margin: 0 auto;
-    background-color: $lightLightGray;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    @include rounded;
-    p {
-      display: inline-block;
-      margin: 5px;
-      width: 90%;
-    }
-  }
-
-  #notice {
-    color: $darkGreen;
-    border: 1px solid $darkGreen;
-  }
-  #alert {
-    color: $darkRed;
-    border: 1px solid $darkRed;
-  }
-
-
-  .large-btn {
-    font-size: 1em;
-    color: #fff;
-    padding: 5px 10px;
-    @include buttonBackground;
-    @include rounded;
-  }
-
-  .invite-accept-form {
-    margin-left: 20%;
-    font-size: 1.8em;
-    .fields {
-      label {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-    .submit {
-      display: inline-block;
-      input {
-        font-size: 0.6em;
-        color: #fff;
-        @include buttonBackground;
-        @include rounded;
-      }
-    }
-  }
-  
-  .close {
-    margin: 3px 5px 0 0;
-    font-size: 0.5em;
-    float: right;
-    color: $darkGray;
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    @include rounded(50%);
-    padding-left: 3.5px;
-    line-height: 12px;
-    &:hover {
-      color: $white;
-      background-color: $lightRed;
-      border: 1px solid $darkRed;
-    }
-  }
-
   .minimize, .maximize { display: none !important; }
 }

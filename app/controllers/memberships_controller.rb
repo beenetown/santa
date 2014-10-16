@@ -28,7 +28,6 @@ class MembershipsController < ApplicationController
       flash[:alert] = "The owner cannot be removed from the group!"
     else    
 
-      #reassign gift
       if @group.select_date && Time.now.to_date > @group.select_date
         reassign_gift(@group, @user) 
       end
