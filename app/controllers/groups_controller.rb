@@ -27,6 +27,10 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @user = current_user if current_user
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /groups/1/edit

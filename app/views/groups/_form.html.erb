@@ -1,7 +1,6 @@
 <%= form_for(@group) do |f| %>
   <div class="fields">
-    <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "Group Name" %>
+    <%= f.text_field :name, placeholder: "New Group Name" %>
     <%= f.hidden_field :owner_id, value: current_user.id if current_user %>
     <div class="submit">
       <%= f.submit %>

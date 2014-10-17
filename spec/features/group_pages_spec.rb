@@ -53,7 +53,7 @@ describe "group pages" do
 
       it { should_not have_selector "#alert" }
       it { should have_selector "h1", text: "Edit #{group.name}" }
-      it { should have_selector "label", text: "Name" }
+      # it { should have_selector "label", text: "Name" }
       it { should have_selector "#group_name" }
       it { should have_selector "input[type='submit'][value='Update Group']"}
      
@@ -130,15 +130,15 @@ describe "group pages" do
     describe "when signed in" do
       before do
         signin auth 
-        visit new_group_path
+        click_button "Start New Group" 
       end
 
-      it { should_not have_selector '#alert' }
-      it { should have_selector 'h1', text: "New group" }
-      it { should have_selector 'label', text: "Name" }
-      it { should have_selector '#group_name' }
-      it { should have_selector '#group_owner_id' }
-      it { should have_selector "input[type='submit'][value='Create Group']"}
+      it "clicks Start New Group Button" do
+        expect(page).to have_selector 'h1', text: auth.name #need to figure out js driver
+        expect(page).to have_selector '#group_name' 
+        expect(page).to have_selector '#group_owner_id' 
+        expect(page).to have_selector "input[type='submit'][value='Create Group']"
+      end
 
       describe "with invalid info" do
         it "should not be able to create a group" do

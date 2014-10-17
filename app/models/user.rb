@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   def self.destroy_old_guests
     where(guest: true).where("created_at < ?", 1.week.ago).destroy_all
     puts "=============================================="
-    puts "Old Guests completed #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')}."
+    puts "Old Guests removed at #{Time.now.strftime('on %m/%d/%Y at %I:%M%p')}."
     puts "=============================================="
   end
 

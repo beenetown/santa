@@ -1,22 +1,23 @@
-@mixin box_sizing {
+//mixins
+@mixin boxSizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 @mixin rounded($radius: 0.4em) {
--webkit-border-radius: $radius;
--moz-border-radius: $radius;
-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
 }
 
-@mixin rounded-top($radius: 0.4em) {
--webkit-border-radius: $radius $radius 0 0;
--moz-border-radius: $radius $radius 0 0;
-border-radius: $radius $radius 0 0;
+@mixin roundedTop($radius: 0.4em) {
+  -webkit-border-radius: $radius $radius 0 0;
+  -moz-border-radius: $radius $radius 0 0;
+  border-radius: $radius $radius 0 0;
 }
 
-@mixin background_size {
+@mixin backgroundSize {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -34,10 +35,11 @@ border-radius: $radius $radius 0 0;
   border: none;
 }
 
+//variables
 $white: #fff;
 $offWhite: #f5f3ea;
 $lightLightGray: #eee;
-$lightGray: #909090;
+$lightGray: #888;
 $darkGray: #444;
 
 $lightLightGreen: #e5ebe7;
@@ -63,7 +65,7 @@ $tierSub: -2;
   .left { float: left; }
   .right { float: right; }
 
-  *, *:before, *:after {@include box_sizing;}
+  *, *:before, *:after {@include boxSizing;}
 
   html, body{height:100%;}
 
@@ -239,12 +241,12 @@ $tierSub: -2;
     min-height: 100%;
     background-color: white;
     box-shadow: 0 1px 1px 0px $lightGray;
-    @include rounded-top;
+    @include roundedTop;
     h1, h2, h3 {
       padding: 0 12.5% 0 12.5%;
     }
     h1 {
-      @include rounded-top(0.2em);
+      @include roundedTop(0.2em);
       color: $lightLightGreen;
       background-color: $lightGreen;
       font-size: 2em;
@@ -333,9 +335,9 @@ $tierSub: -2;
   .sidebar {
     background-color: $white;
     box-shadow: 0 1px 1px 0px $lightGray;
-    @include rounded-top;
+    @include roundedTop;
     h1 {  
-      @include rounded-top(0.2em);
+      @include roundedTop(0.2em);
       color: $lightLightGreen;
       background-color: $lightRed;
       font-size: 2em;
@@ -431,7 +433,7 @@ $tierSub: -2;
     h1 {
       color: $lightLightGray;
       background-color: $lightGreen;
-      @include rounded-top;
+      @include roundedTop;
       padding: 10px 0 10px 22%;
       width: 100%;
     }
@@ -809,6 +811,7 @@ $tierSub: -2;
     h1, h2, h3 {
       padding: 0 5% 5px 5%;
     }
+    h1 { padding-top: 8px; }
   }
   .content { width: 60%; }
 
@@ -840,6 +843,7 @@ $tierSub: -2;
     h1, h2, h3 {
       padding: 0 5% 5px 5%;
     }
+    h1 { padding-top: 8px; }
   }
 
   .content {
